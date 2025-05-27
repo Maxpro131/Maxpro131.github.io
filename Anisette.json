@@ -1,4 +1,8 @@
 {
-    "name": "Maxpro166",
-    "address": "https://maxpros-anisette.onrender.com"
+    "servers": [
+        {
+            "name": "Maxpro166",
+            "address": "https://maxpros-anisette.onrender.com"
+        }
+    ]
 }
