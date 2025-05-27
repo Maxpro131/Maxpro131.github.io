@@ -3,6 +3,10 @@
         {
             "name": "Maxpro166",
             "address": "https://maxpros-anisette.onrender.com/"
-        }
+        },
+        {
+            "name": "SideStore (.zip)",
+            "address": "https://ani.sidestore.zip"
+        },
     ]
 }
