@@ -9,7 +9,7 @@
   "headerURL": "https://raw.githubusercontent.com/LiveContainer/LiveContainer/main/screenshots/header.png",
   "apps": [
     {
-      "beta": false,
+      "beta": true,
       "name": "LiveContainer (nightly)",
       "bundleIdentifier": "com.kdt.livecontainer",
       "developerName": "LiveContainer Team",
