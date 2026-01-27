@@ -3,5 +3,6 @@
   "$ui_scale": 1.25,
   "$position": [0.0, 1.0, -0.5],
   "$title_text": "Déesse UI",
-  "$uncharted_var": "this key exists in example but will be ignored"
+  "$uncharted_var": "this key exists in example but will be ignored",
+  "$anchor_corner": "bottom_left"
 }
