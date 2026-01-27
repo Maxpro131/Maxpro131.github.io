@@ -12,27 +12,22 @@
 
     <section class="row">
       <div class="card">
-        <h2>Load variables</h2>
-        <p>Upload your _global_variables.json from the resource pack, or click "Load example" to try.</p>
-        <input id="fileInput" type="file" accept=".json" />
-        <button id="loadExample">Load example</button>
-        <button id="resetBtn">Reset</button>
-        <div class="help" id="uploadWarning"></div>
+        <h2>Example / Defaults</h2>
+        <p>The page loads the example by default. Unknown keys are ignored — only variables declared in the config are shown and output.</p>
+        <button id="loadExample">Reload example</button>
+        <button id="resetBtn">Reset to defaults</button>
       </div>
 
       <div class="card">
         <h2>Actions</h2>
         <button id="downloadBtn" class="primary">Download _global_variables.json</button>
-        <div id="status" class="status">No file loaded.</div>
-        <div style="margin-top:8px">
-          <label><input id="advancedToggle" type="checkbox" /> Enable advanced mode (allow unknown keys / raw edits)</label>
-        </div>
+        <div id="status" class="status">No file loaded yet.</div>
       </div>
     </section>
 
     <section>
       <h2>Controls</h2>
-      <div id="controls" class="controls">Load a variables file to edit the controls.</div>
+      <div id="controls" class="controls">Loading configuration…</div>
     </section>
 
     <section>
@@ -40,16 +35,14 @@
       <div class="row two">
         <textarea id="jsonPreview" class="json" spellcheck="false" readonly></textarea>
         <div class="card">
-          <h3>Fallback / Raw edit</h3>
-          <p>If a variable is not configured to have a control, edit here. Changes are synchronized with controls where possible. Raw edits are restricted unless advanced mode is enabled.</p>
-          <textarea id="rawEditor" class="json" spellcheck="false"></textarea>
-          <button id="applyRaw">Apply Raw JSON</button>
+          <h3>Info</h3>
+          <p>This JSON is the sanitized object that will be downloaded. Unknown/extra keys are never included.</p>
         </div>
       </div>
     </section>
 
     <footer>
-      <small>Config is loaded from <code>config/variables-config.json</code>. Edit it in your repo to declare forms for variables. Page-only metadata (pageName/help/defaults) are UI-only and will not appear in the downloaded _global_variables.json.</small>
+      <small>Config is loaded from <code>config/variables-config.json</code>. Edit it in your repo to declare forms for variables and to mark variables readonly (UI metadata like pageName/help/default do not get written to the downloaded file).</small>
     </footer>
   </main>
 
