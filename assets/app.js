@@ -3,10 +3,14 @@
 // - Loads example from examples/_global_variables.example.json (resolved relative to page URL)
 // - Uses only keys present in config.variables (unknown keys ignored)
 // - Readonly behavior controlled by config.variables[$key].readonly
-// - Supports new "choice" input type via either numbered choice_* fields or a "choices" array
+// - Supports "choice" input type and persist last user state across reloads (sessionStorage)
+// - Pretty-prints JSON but keeps simple arrays on one line: [0, 1, -0.5]
 
 const CONFIG_URL = new URL('config/variables-config.json', location.href).href;
 const EXAMPLE_URL = new URL('examples/_global_variables.example.json', location.href).href;
+
+const STORAGE_KEY_USER = 'deesse_lastUser';
+const STORAGE_KEY_DEFAULTS = 'deesse_defaults';
 
 const controlsEl = document.getElementById('controls');
 const jsonPreview = document.getElementById('jsonPreview');
@@ -77,6 +81,34 @@ function getChoices(desc){
     return choices.map(c => c.val);
   }
   return [];
+}
+
+function saveUserState(){
+  try {
+    sessionStorage.setItem(STORAGE_KEY_USER, JSON.stringify(variables));
+  } catch(e){
+    // ignore storage errors (private mode etc.)
+    console.warn('Could not save user state', e);
+  }
+}
+
+function loadUserState(){
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY_USER);
+    if(!raw) return null;
+    return JSON.parse(raw);
+  } catch(e){
+    console.warn('Could not read user state', e);
+    return null;
+  }
+}
+
+function saveDefaultsToStorage(){
+  try {
+    sessionStorage.setItem(STORAGE_KEY_DEFAULTS, JSON.stringify(defaults));
+  } catch(e){
+    console.warn('Could not save defaults', e);
+  }
 }
 
 function makeControl(key, value, desc){
@@ -232,27 +264,6 @@ function renderControlsForVariables(){
   });
 }
 
-async function loadExampleAndApply(){
-  try {
-    const r = await fetch(EXAMPLE_URL);
-    if(!r.ok) throw new Error('No example file');
-    const src = await r.json();
-    variables = buildSanitizedFromSource(src);
-    defaults = buildSanitizedFromSource(src);
-    updatePreview();
-    renderControlsForVariables();
-    status.textContent = 'Example loaded (sanitized to configured keys).';
-  } catch(e) {
-    // Fall back to config defaults
-    variables = buildSanitizedFromSource(null);
-    defaults = buildSanitizedFromSource(null);
-    updatePreview();
-    renderControlsForVariables();
-    status.textContent = 'Could not load example; using config defaults.';
-    console.warn('Example load failed', e);
-  }
-}
-
 // Always return an object with keys from config.variables using source if present,
 // otherwise falling back to desc.default or a sensible default.
 function buildSanitizedFromSource(source){
@@ -268,19 +279,73 @@ function buildSanitizedFromSource(source){
   return out;
 }
 
+async function loadExampleAndApply(){
+  try {
+    const r = await fetch(EXAMPLE_URL);
+    if(!r.ok) throw new Error('No example file');
+    const src = await r.json();
+    variables = buildSanitizedFromSource(src);
+    defaults = buildSanitizedFromSource(src);
+    // Save defaults to sessionStorage so they can be inspected if needed
+    saveDefaultsToStorage();
+    updatePreview();
+    renderControlsForVariables();
+    status.textContent = 'Example loaded (sanitized to configured keys).';
+  } catch(e) {
+    // Fall back to config defaults
+    variables = buildSanitizedFromSource(null);
+    defaults = buildSanitizedFromSource(null);
+    saveDefaultsToStorage();
+    updatePreview();
+    renderControlsForVariables();
+    status.textContent = 'Could not load example; using config defaults.';
+    console.warn('Example load failed', e);
+  }
+}
+
 function resetToDefaults(){
-  variables = structuredClone(defaults);
+  // If the user previously changed values we saved them to sessionStorage,
+  // prefer restoring that "last user state" so reset behaves like "restore last used".
+  const saved = loadUserState();
+  if(saved){
+    variables = structuredClone(saved);
+    status.textContent = 'Restored last used state (from this tab).';
+  } else {
+    variables = structuredClone(defaults);
+    status.textContent = 'Reset to defaults.';
+  }
   updatePreview();
   renderControlsForVariables();
-  status.textContent = 'Reset to defaults.';
+}
+
+// Pretty print JSON but keep simple arrays of primitives on a single line.
+// - Uses JSON.stringify(obj, null, 2) then collapses arrays that don't contain objects/arrays.
+// This keeps arrays like [0, 1, -0.5] inline while preserving readable indentation elsewhere.
+function prettyPrintJSON(obj){
+  let s = JSON.stringify(obj, null, 2);
+  // Collapse arrays consisting only of primitives (no nested objects/arrays).
+  // Pattern: [\n   <primitive>,\n   <primitive>\n  ]
+  s = s.replace(/\[\n(\s*)([^\[\]\{\}]*?)\n\s*\]/gs, (m, indent, inner) => {
+    // inner contains lines like "0,", "1,", "-0.5," or strings with quotes.
+    // Convert interior newlines + indentation to single spaces, and normalize commas/spaces.
+    const oneLine = inner
+      .replace(/\n\s*/g, ' ')     // join lines with spaces
+      .replace(/,\s*/g, ', ')     // ensure a space after commas
+      .trim();
+    return '[' + (oneLine === '' ? '' : ' ' + oneLine + ' ') + ']';
+  });
+  return s;
 }
 
 function updatePreview(){
-  jsonPreview.value = JSON.stringify(variables, null, 2);
+  jsonPreview.value = prettyPrintJSON(variables);
+  // Save user state to sessionStorage after any change so it survives reload
+  saveUserState();
 }
 
 function downloadJSON(){
-  const blob = new Blob([JSON.stringify(variables, null, 2)], {type:'application/json'});
+  const content = prettyPrintJSON(variables) + '\n';
+  const blob = new Blob([content], {type:'application/json'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = '_global_variables.json';
@@ -295,7 +360,31 @@ resetBtn.addEventListener('click', resetToDefaults);
 
 async function init(){
   await loadConfig();
-  await loadExampleAndApply();
+
+  // If there's a saved last-user state in sessionStorage, restore it as the starting variables.
+  // Otherwise load the example (and save defaults).
+  const saved = loadUserState();
+  if(saved){
+    // Also load defaults from storage if present (so reset still works against a stored default)
+    try {
+      const d = sessionStorage.getItem(STORAGE_KEY_DEFAULTS);
+      if(d) defaults = JSON.parse(d);
+    } catch(e){}
+    variables = structuredClone(saved);
+    // Ensure UI uses sanitized shape: keep only keys from config
+    variables = buildSanitizedFromSource(variables);
+    // If defaults are empty, fetch example (non-blocking) to populate them
+    if(!Object.keys(defaults).length) {
+      await loadExampleAndApply();
+    } else {
+      updatePreview();
+      renderControlsForVariables();
+      status.textContent = 'Restored last used state.';
+    }
+  } else {
+    await loadExampleAndApply();
+  }
+
   status.textContent = 'Ready.';
 }
 
