@@ -3,6 +3,7 @@
 // - Loads example from examples/_global_variables.example.json (resolved relative to page URL)
 // - Uses only keys present in config.variables (unknown keys ignored)
 // - Readonly behavior controlled by config.variables[$key].readonly
+// - Supports new "choice" input type via either numbered choice_* fields or a "choices" array
 
 const CONFIG_URL = new URL('config/variables-config.json', location.href).href;
 const EXAMPLE_URL = new URL('examples/_global_variables.example.json', location.href).href;
@@ -51,26 +52,31 @@ function defaultFor(desc){
   if(desc.type === 'number') return 0;
   if(desc.type === 'number_array') return Array(desc.count || 2).fill(0);
   if(desc.type === 'string') return '';
+  if(desc.type === 'choice'){
+    const choices = getChoices(desc);
+    return (choices && choices.length) ? choices[0] : '';
+  }
   return null;
 }
 
-function buildSanitizedFromSource(source){
-  // Always return an object with keys from config.variables using source if present,
-  // otherwise falling back to desc.default or a sensible default.
-  const out = {};
-  const vars = config.variables || {};
-  Object.keys(vars).forEach(k => {
-    if(source && Object.prototype.hasOwnProperty.call(source, k)) {
-      out[k] = source[k];
-    } else {
-      out[k] = defaultFor(vars[k]);
+// Read choices out of the descriptor. Supports:
+// - desc.choices: an array of values
+// - desc.choice_1, desc.choice_2, ... : numbered keys (preserves numeric order)
+function getChoices(desc){
+  if(!desc) return [];
+  if(Array.isArray(desc.choices)) return desc.choices.map(String);
+  const choices = [];
+  Object.keys(desc).forEach(k => {
+    const m = k.match(/^choice_(\d+)$/);
+    if(m){
+      choices.push({ idx: Number(m[1]), val: String(desc[k]) });
     }
   });
-  return out;
-}
-
-function updatePreview(){
-  jsonPreview.value = JSON.stringify(variables, null, 2);
+  if(choices.length){
+    choices.sort((a,b)=>a.idx-b.idx);
+    return choices.map(c => c.val);
+  }
+  return [];
 }
 
 function makeControl(key, value, desc){
@@ -95,6 +101,43 @@ function makeControl(key, value, desc){
       updatePreview();
     });
     right.appendChild(input);
+
+  } else if(desc && desc.type === 'choice'){
+    // render select dropdown with options
+    const choices = getChoices(desc);
+    const select = document.createElement('select');
+    select.disabled = readonly;
+    // Populate options
+    choices.forEach(opt => {
+      const o = document.createElement('option');
+      o.value = opt;
+      o.textContent = opt;
+      select.appendChild(o);
+    });
+    // If no choices found, fall back to a text input
+    if(choices.length === 0){
+      const fallback = document.createElement('input');
+      fallback.type = 'text';
+      fallback.disabled = readonly;
+      fallback.value = String(value ?? '');
+      fallback.addEventListener('input', () => {
+        variables[key] = fallback.value;
+        updatePreview();
+      });
+      right.appendChild(fallback);
+    } else {
+      // set initial value (desc.default, provided value, or first choice)
+      const initial = (value !== undefined && value !== null && String(value) !== '') ? String(value) :
+                      (desc.default !== undefined ? String(desc.default) : choices[0]);
+      select.value = initial;
+      variables[key] = select.value;
+      select.addEventListener('change', () => {
+        variables[key] = select.value;
+        updatePreview();
+      });
+      right.appendChild(select);
+    }
+
   } else if(desc && desc.type === 'number' && desc.input === 'slider'){
     const range = document.createElement('input');
     range.type = 'range';
@@ -123,6 +166,7 @@ function makeControl(key, value, desc){
 
     right.appendChild(range);
     right.appendChild(number);
+
   } else if(desc && desc.type === 'number_array'){
     const count = desc.count || (Array.isArray(value) ? value.length : 2);
     const container = document.createElement('div');
@@ -145,6 +189,7 @@ function makeControl(key, value, desc){
       container.appendChild(num);
     }
     right.appendChild(container);
+
   } else {
     const input = document.createElement('input');
     const isNumber = desc && desc.type === 'number';
@@ -208,11 +253,30 @@ async function loadExampleAndApply(){
   }
 }
 
+// Always return an object with keys from config.variables using source if present,
+// otherwise falling back to desc.default or a sensible default.
+function buildSanitizedFromSource(source){
+  const out = {};
+  const vars = config.variables || {};
+  Object.keys(vars).forEach(k => {
+    if(source && Object.prototype.hasOwnProperty.call(source, k)) {
+      out[k] = source[k];
+    } else {
+      out[k] = defaultFor(vars[k]);
+    }
+  });
+  return out;
+}
+
 function resetToDefaults(){
   variables = structuredClone(defaults);
   updatePreview();
   renderControlsForVariables();
   status.textContent = 'Reset to defaults.';
+}
+
+function updatePreview(){
+  jsonPreview.value = JSON.stringify(variables, null, 2);
 }
 
 function downloadJSON(){
