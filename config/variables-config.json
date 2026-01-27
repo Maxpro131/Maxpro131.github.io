@@ -31,10 +31,17 @@
     "$title_text": {
       "type": "string",
       "input": "text",
-      "readonly": true,
+      "readonly": false,
       "label": "Title text",
       "help": "Displayed title string in the UI.",
       "default": "Déesse UI"
+    },
+    "$anchor_corner": {
+      "type": "choice",
+      "label": "Anchor corner",
+      "help": "Choose which screen corner to anchor the UI to.",
+      "choices": ["bottom_left", "bottom_right", "top_left", "top_right"],
+      "default": "bottom_left"
     }
   }
 }
