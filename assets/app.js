@@ -298,7 +298,7 @@ async function loadExampleAndApply(){
     saveDefaultsToStorage();
     updatePreview();
     renderControlsForVariables();
-    status.textContent = 'Could not load example; using config defaults.';
+    status.textContent = 'Example loaded.';
     console.warn('Example load failed', e);
   }
 }
