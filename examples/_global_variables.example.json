@@ -1,0 +1,7 @@
+{
+  "$show_particles": true,
+  "$ui_scale": 1.25,
+  "$position": [0.0, 1.0, -0.5],
+  "$title_text": "Déesse UI",
+  "$uncharted_var": "you can edit me in raw"
+}
