@@ -1,7 +1,10 @@
-// Simple front-end editor for _global_variables.json driven by config/variables-config.json
-// - Fetches config (map of variable key -> descriptor)
-// - Lets user upload a JSON file to populate controls
-// - Renders controls per config, keeps live JSON, allows raw edits, and download
+// Front-end editor for _global_variables.json driven by config/variables-config.json
+// - Uses ./config/variables-config.json and ./examples/_global_variables.example.json (relative paths)
+// - By default, uploaded JSON is merged into a whitelist (config.variables) to avoid unexpected adds/removes
+// - Advanced mode allows raw edits and unknown keys to be applied (dangerous for casual users)
+
+const CONFIG_PATH = './config/variables-config.json';
+const EXAMPLE_PATH = './examples/_global_variables.example.json';
 
 const fileInput = document.getElementById('fileInput');
 const controlsEl = document.getElementById('controls');
@@ -12,20 +15,38 @@ const downloadBtn = document.getElementById('downloadBtn');
 const loadExample = document.getElementById('loadExample');
 const resetBtn = document.getElementById('resetBtn');
 const status = document.getElementById('status');
+const uploadWarning = document.getElementById('uploadWarning');
+const pageTitle = document.getElementById('pageTitle');
+const advancedToggle = document.getElementById('advancedToggle');
 
-let config = {};
+let config = { variables: {} };
 let variables = {}; // current object produced from controls or raw
 let original = null;
 
 async function loadConfig(){
   try{
-    const res = await fetch('/config/variables-config.json');
+    const res = await fetch(CONFIG_PATH);
     if(!res.ok) throw new Error('Failed to load config');
     config = await res.json();
+    // Normalise config shape: allow either old flat map or new { variables: {...} }
+    if(!config.variables){
+      // If the config file was the older format (flat map keyed by $var),
+      // wrap it so we always use config.variables internally.
+      const copy = {};
+      Object.keys(config).forEach(k => {
+        if(k === 'pageName') return;
+        copy[k] = config[k];
+      });
+      config = {
+        pageName: config.pageName || 'Déesse UI — _global_variables.json editor',
+        variables: Object.keys(copy).length ? copy : {}
+      };
+    }
+    pageTitle.textContent = config.pageName || pageTitle.textContent;
     console.log('Loaded config', config);
   }catch(e){
     console.warn('Could not load config/variables-config.json — using empty config. Error:', e);
-    config = {};
+    config = { pageName: 'Déesse UI — _global_variables.json editor', variables: {}};
   }
 }
 
@@ -35,6 +56,7 @@ function setStatus(text){
 
 function updatePreview(){
   jsonPreview.value = JSON.stringify(variables, null, 2);
+  // raw editor shows all variables (including unknowns when advanced mode was used)
   rawEditor.value = JSON.stringify(variables, null, 2);
 }
 
@@ -48,19 +70,23 @@ function downloadJSON(){
   a.remove();
 }
 
+function defaultFor(desc){
+  if(desc && desc.default !== undefined) return desc.default;
+  if(desc && desc.type === 'boolean') return false;
+  if(desc && desc.type === 'number') return 0;
+  if(desc && desc.type === 'number_array') return Array(desc.count || 2).fill(0);
+  if(desc && desc.type === 'string') return '';
+  return null;
+}
+
 function makeControl(key, value, desc){
-  // desc example:
-  // { type: "boolean" | "string" | "number" | "number_array",
-  //   input: "toggle" | "slider" | "text" | "manual",
-  //   readonly: false,
-  //   min: 0, max: 10, step: 1,
-  //   count: 3, // for arrays
-  //   label: "Pretty name"
-  // }
   const row = document.createElement('div');
   row.className = 'control-row';
   const label = document.createElement('label');
   label.innerHTML = `<span class="key">${key}</span><div class="help">${desc && desc.label ? desc.label : ''}</div>`;
+  if(desc && desc.help){
+    label.innerHTML += `<div class="help">${desc.help}</div>`;
+  }
   row.appendChild(label);
 
   const right = document.createElement('div');
@@ -158,30 +184,61 @@ function makeControl(key, value, desc){
 
 function renderControlsForVariables(vars){
   controlsEl.innerHTML = '';
-  const keys = Object.keys(vars);
-  if(keys.length === 0){
-    controlsEl.textContent = 'No variables found in the loaded file.';
+  const configVars = Object.keys(config.variables || {});
+  if(configVars.length === 0){
+    controlsEl.textContent = 'No variables are configured in config/variables-config.json.';
     return;
   }
-  keys.forEach(key => {
-    const desc = config[key];
-    const control = makeControl(key, vars[key], desc || {});
+  configVars.forEach(key => {
+    const desc = config.variables[key] || {};
+    const val = vars[key] !== undefined ? vars[key] : defaultFor(desc);
+    const control = makeControl(key, val, desc || {});
     controlsEl.appendChild(control);
   });
 
-  // Show a note for any variables present in config but missing from file
-  const missing = Object.keys(config).filter(k => !keys.includes(k));
-  if(missing.length){
+  // If there are keys present in vars but not in config, show a note (ignored keys)
+  const extraKeys = Object.keys(vars).filter(k => !configVars.includes(k));
+  if(extraKeys.length){
     const card = document.createElement('div');
     card.className = 'card';
-    card.innerHTML = `<strong>Note</strong><div class="help">Config has ${missing.length} variable(s) not found in uploaded file: <code>${missing.join(', ')}</code>. You can add them in the raw JSON.</div>`;
+    card.innerHTML = `<strong>Extra keys present in loaded JSON</strong><div class="help">The uploaded JSON included ${extraKeys.length} key(s) that are not configured and will be ignored by default: <code>${extraKeys.join(', ')}</code>. Enable advanced mode to accept unknown keys.</div>`;
     controlsEl.appendChild(card);
   }
 }
 
-function applyVariables(obj){
-  variables = structuredClone(obj);
-  original = structuredClone(obj);
+function buildSanitizedVariablesFromUpload(uploaded){
+  // Build an object containing only keys present in config.variables.
+  const out = {};
+  const configVars = config.variables || {};
+  Object.keys(configVars).forEach(k => {
+    if(uploaded && Object.prototype.hasOwnProperty.call(uploaded, k)){
+      out[k] = uploaded[k];
+    } else {
+      out[k] = defaultFor(configVars[k]);
+    }
+  });
+  return out;
+}
+
+function applyVariables(obj, { fromUpload = false, allowUnknown = false } = {}){
+  if(fromUpload && config && config.variables && Object.keys(config.variables).length > 0 && !allowUnknown){
+    // sanitize: only take keys from config.variables
+    const sanitized = buildSanitizedVariablesFromUpload(obj);
+    variables = structuredClone(sanitized);
+    // compute ignored keys for message
+    const ignored = Object.keys(obj).filter(k => !Object.prototype.hasOwnProperty.call(config.variables, k));
+    if(ignored.length){
+      uploadWarning.textContent = `Ignored ${ignored.length} key(s) from uploaded JSON: ${ignored.join(', ')}. Enable advanced mode to include them.`;
+    } else {
+      uploadWarning.textContent = '';
+    }
+  } else {
+    // advanced: accept everything in object as-is
+    variables = structuredClone(obj);
+    uploadWarning.textContent = '';
+  }
+
+  original = structuredClone(variables);
   renderControlsForVariables(variables);
   updatePreview();
   setStatus('File loaded. Edit controls or raw JSON, then download.');
@@ -193,7 +250,8 @@ fileInput.addEventListener('change', async (ev) => {
   const txt = await f.text();
   try{
     const obj = JSON.parse(txt);
-    applyVariables(obj);
+    const allowUnknown = advancedToggle.checked;
+    applyVariables(obj, { fromUpload: true, allowUnknown });
   }catch(e){
     alert('Invalid JSON file.');
   }
@@ -201,51 +259,56 @@ fileInput.addEventListener('change', async (ev) => {
 
 loadExample.addEventListener('click', async () => {
   try{
-    const res = await fetch('/examples/_global_variables.example.json');
+    const res = await fetch(EXAMPLE_PATH);
     if(!res.ok) throw new Error('No example file');
     const obj = await res.json();
-    applyVariables(obj);
+    applyVariables(obj, { fromUpload: true, allowUnknown: false });
   }catch(e){
-    alert('Could not load example from /examples/_global_variables.example.json — you can still paste raw JSON.');
+    alert('Could not load example from ' + EXAMPLE_PATH + ' — you can still paste raw JSON.');
   }
 });
 
 applyRaw.addEventListener('click', () => {
   try{
     const parsed = JSON.parse(rawEditor.value);
-    applyVariables(parsed);
+    const allowUnknown = advancedToggle.checked;
+    if(!allowUnknown){
+      // sanitize
+      applyVariables(parsed, { fromUpload: true, allowUnknown: false });
+    } else {
+      applyVariables(parsed, { fromUpload: true, allowUnknown: true });
+    }
   }catch(e){
     alert('Invalid JSON in raw editor.');
   }
 });
 
 jsonPreview.addEventListener('input', () => {
-  // keep it readonly for preview; but if user edits preview, try to parse and apply
-  try{
-    const parsed = JSON.parse(jsonPreview.value);
-    variables = parsed;
-    renderControlsForVariables(variables);
-    rawEditor.value = JSON.stringify(variables, null, 2);
-  }catch(e){
-    // ignore parse errors while typing
-  }
+  // readonly preview; keep it non-editable. We keep the event handler for safety but it's readonly.
 });
 
 downloadBtn.addEventListener('click', downloadJSON);
 
 resetBtn.addEventListener('click', () => {
   if(!original) return;
-  applyVariables(original);
+  applyVariables(original, { fromUpload: false, allowUnknown: advancedToggle.checked });
+});
+
+advancedToggle.addEventListener('change', () => {
+  const msg = advancedToggle.checked
+    ? 'Advanced mode ON — raw edits/unknown keys are allowed. Be careful!'
+    : 'Advanced mode OFF — only configured keys will be accepted from uploads/raw JSON.';
+  setStatus(msg);
 });
 
 async function init(){
   await loadConfig();
   setStatus('Ready. Load a _global_variables.json to begin.');
-  // If user visits page without uploading: try to fetch example silently
+  // silent prefetch example (no-op if missing)
   try{
-    const r = await fetch('/examples/_global_variables.example.json');
+    const r = await fetch(EXAMPLE_PATH);
     if(r.ok) {
-      // no-op; just make example available
+      // nothing to do
     }
   }catch(e){}
 }
