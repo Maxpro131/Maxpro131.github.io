@@ -1,29 +1,40 @@
 {
-  "$show_particles": {
-    "type": "boolean",
-    "input": "toggle",
-    "readonly": false,
-    "label": "Show particles"
-  },
-  "$ui_scale": {
-    "type": "number",
-    "input": "slider",
-    "min": 0.5,
-    "max": 3,
-    "step": 0.1,
-    "readonly": false,
-    "label": "UI scale"
-  },
-  "$position": {
-    "type": "number_array",
-    "count": 3,
-    "readonly": false,
-    "label": "Position (x, y, z)"
-  },
-  "$title_text": {
-    "type": "string",
-    "input": "text",
-    "readonly": false,
-    "label": "Title text"
+  "pageName": "Déesse UI — Editor",
+  "variables": {
+    "$show_particles": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show particles",
+      "help": "Enable or disable particle effects in the UI.",
+      "default": true
+    },
+    "$ui_scale": {
+      "type": "number",
+      "input": "slider",
+      "min": 0.5,
+      "max": 3,
+      "step": 0.1,
+      "readonly": false,
+      "label": "UI scale",
+      "help": "Scale factor for the UI elements.",
+      "default": 1.25
+    },
+    "$position": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Position (x, y, z)",
+      "help": "Anchor position for the UI (3 floats).",
+      "default": [0.0, 1.0, -0.5]
+    },
+    "$title_text": {
+      "type": "string",
+      "input": "text",
+      "readonly": true,
+      "label": "Title text",
+      "help": "Displayed title string in the UI.",
+      "default": "Déesse UI"
+    }
   }
 }
