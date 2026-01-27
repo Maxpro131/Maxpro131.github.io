@@ -1,2 +1,1 @@
-# Idk1667.github.io
-A test page
+# Déesse UI — _global_variables.json Editor
