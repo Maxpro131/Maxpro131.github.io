@@ -31,7 +31,7 @@
     "$title_text": {
       "type": "string",
       "input": "text",
-      "readonly": true,
+      "readonly": false,
       "label": "Title text",
       "help": "Displayed title string in the UI.",
       "default": "Déesse UI"
