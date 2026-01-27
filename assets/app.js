@@ -332,7 +332,8 @@ function prettyPrintJSON(obj){
       .replace(/\n\s*/g, ' ')     // join lines with spaces
       .replace(/,\s*/g, ', ')     // ensure a space after commas
       .trim();
-    return '[' + (oneLine === '' ? '' : ' ' + oneLine + ' ') + ']';
+    if(oneLine === '') return '[]';
+    return '[' + oneLine + ']';
   });
   return s;
 }
