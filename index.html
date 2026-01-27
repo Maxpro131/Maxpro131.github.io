@@ -8,7 +8,7 @@
 </head>
 <body>
   <main class="container">
-    <h1>Déesse UI — _global_variables.json editor</h1>
+    <h1 id="pageTitle">Déesse UI — _global_variables.json editor</h1>
 
     <section class="row">
       <div class="card">
@@ -17,12 +17,16 @@
         <input id="fileInput" type="file" accept=".json" />
         <button id="loadExample">Load example</button>
         <button id="resetBtn">Reset</button>
+        <div class="help" id="uploadWarning"></div>
       </div>
 
       <div class="card">
         <h2>Actions</h2>
         <button id="downloadBtn" class="primary">Download _global_variables.json</button>
         <div id="status" class="status">No file loaded.</div>
+        <div style="margin-top:8px">
+          <label><input id="advancedToggle" type="checkbox" /> Enable advanced mode (allow unknown keys / raw edits)</label>
+        </div>
       </div>
     </section>
 
@@ -34,10 +38,10 @@
     <section>
       <h2>Live JSON</h2>
       <div class="row two">
-        <textarea id="jsonPreview" class="json" spellcheck="false"></textarea>
+        <textarea id="jsonPreview" class="json" spellcheck="false" readonly></textarea>
         <div class="card">
           <h3>Fallback / Raw edit</h3>
-          <p>If a variable is not configured to have a control, edit here. Changes are synchronized with controls where possible.</p>
+          <p>If a variable is not configured to have a control, edit here. Changes are synchronized with controls where possible. Raw edits are restricted unless advanced mode is enabled.</p>
           <textarea id="rawEditor" class="json" spellcheck="false"></textarea>
           <button id="applyRaw">Apply Raw JSON</button>
         </div>
@@ -45,7 +49,7 @@
     </section>
 
     <footer>
-      <small>Config is loaded from <code>config/variables-config.json</code>. Edit it in your repo to declare forms for variables.</small>
+      <small>Config is loaded from <code>config/variables-config.json</code>. Edit it in your repo to declare forms for variables. Page-only metadata (pageName/help/defaults) are UI-only and will not appear in the downloaded _global_variables.json.</small>
     </footer>
   </main>
 
