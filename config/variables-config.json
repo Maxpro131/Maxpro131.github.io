@@ -6,7 +6,7 @@
       "input": "toggle",
       "readonly": false,
       "label": "Show particles",
-      "help": "Enable or disable particle effects in the UI.",
+      "help": "Hi \"Test\" something",
       "default": true
     },
     "$ui_scale": {
