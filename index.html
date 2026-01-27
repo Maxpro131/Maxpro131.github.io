@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Déesse UI — _global_variables.json editor</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Déesse UI — _global_variables.json editor</h1>
+
+    <section class="row">
+      <div class="card">
+        <h2>Load variables</h2>
+        <p>Upload your _global_variables.json from the resource pack, or click "Load example" to try.</p>
+        <input id="fileInput" type="file" accept=".json" />
+        <button id="loadExample">Load example</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+
+      <div class="card">
+        <h2>Actions</h2>
+        <button id="downloadBtn" class="primary">Download _global_variables.json</button>
+        <div id="status" class="status">No file loaded.</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Controls</h2>
+      <div id="controls" class="controls">Load a variables file to edit the controls.</div>
+    </section>
+
+    <section>
+      <h2>Live JSON</h2>
+      <div class="row two">
+        <textarea id="jsonPreview" class="json" spellcheck="false"></textarea>
+        <div class="card">
+          <h3>Fallback / Raw edit</h3>
+          <p>If a variable is not configured to have a control, edit here. Changes are synchronized with controls where possible.</p>
+          <textarea id="rawEditor" class="json" spellcheck="false"></textarea>
+          <button id="applyRaw">Apply Raw JSON</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <small>Config is loaded from <code>config/variables-config.json</code>. Edit it in your repo to declare forms for variables.</small>
+    </footer>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
