@@ -118,13 +118,13 @@ small{color:var(--muted)}
   display:flex;
   gap:8px;
   width:100%;
-  justify-content:flex-end;
+  justify-content:flex-start; /* align items left so wrapped items keep expected order & size */
   flex-wrap:wrap;        /* wrap when not enough horizontal space */
 }
 
 /* Individual numeric array inputs: responsive sizing */
 .array-inputs input{
-  flex:1 1 28%;          /* try to show 3 across, but allow shrinking */
+  flex:1 1 22%;          /* prefer showing 3-4 across depending on space */
   min-width:56px;        /* but keep readable */
   max-width:160px;
   box-sizing:border-box;
