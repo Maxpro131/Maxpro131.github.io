@@ -203,7 +203,63 @@
       "input": "toggle",
       "readonly": false,
       "label": "Hotbar Switcher",
-      "help": "If the hotbar switcher should be enabled by default.\n Touch control only",
+      "help": "If the hotbar switcher should be enabled by default. \nTouch control only",
+      "default": false
+    },
+    "$dé:hud_menu-empty_slot_counter": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Empty Slot Counter",
+      "help": "If the empty slot counter should be enabled by default. \n Non touch control only",
+      "default": true
+    },
+    "$dé:hud_menu-clock_compass": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Clock & Compass",
+      "help": "If the clock and compass should be enabled by default",
+      "default": true
+    },
+    "$dé:hud_menu-recovery_compass": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Recovery compass",
+      "help": "If the recovery compass should be enabled by default",
+      "default": false
+    },
+    "$dé:hud_menu-hide_chat": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Hide Chat",
+      "help": "If the chat should be hidden by default",
+      "default": false
+    },
+    "$dé:hud_menu-hide_sidebarScoreboard": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Hide Scoreboard",
+      "help": "If the scoreboard should be hidden by default",
+      "default": false
+    },
+    "$dé:hud_menu-hide_coordinates": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Hide Coordinates",
+      "help": "If the coordinates should be hidden by default",
+      "default": false
+    },
+    "$dé:hud_menu-center_item_stack": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Center Item Stack",
+      "help": "",
       "default": false
     }
   }
