@@ -19,6 +19,9 @@ const loadExampleBtn = document.getElementById('loadExample');
 const resetBtn = document.getElementById('resetBtn');
 const status = document.getElementById('status');
 const pageTitle = document.getElementById('pageTitle');
+const searchInput = document.getElementById('searchInput');
+
+let currentSearchTerm = '';
 
 let config = { pageName: 'Déesse UI — Editor', variables: {} };
 let variables = {}; // sanitized object shown & downloadable
@@ -249,6 +252,15 @@ function makeControl(key, value, desc){
   return row;
 }
 
+function matchesSearch(key, desc, searchTerm){
+  if(!searchTerm) return true;
+  const term = searchTerm.toLowerCase();
+  const keyMatch = key.toLowerCase().includes(term);
+  const labelMatch = desc && desc.label && desc.label.toLowerCase().includes(term);
+  const helpMatch = desc && desc.help && desc.help.toLowerCase().includes(term);
+  return keyMatch || labelMatch || helpMatch;
+}
+
 function renderControlsForVariables(){
   controlsEl.innerHTML = '';
   const vars = config.variables || {};
@@ -257,11 +269,17 @@ function renderControlsForVariables(){
     controlsEl.textContent = 'No variables configured. Add entries to config/variables-config.json';
     return;
   }
+  let visibleCount = 0;
   keys.forEach(k => {
     const desc = vars[k] || {};
+    if(!matchesSearch(k, desc, currentSearchTerm)) return;
     const val = variables[k] !== undefined ? variables[k] : defaultFor(desc);
     controlsEl.appendChild(makeControl(k, val, desc));
+    visibleCount++;
   });
+  if(visibleCount === 0 && currentSearchTerm){
+    controlsEl.textContent = 'No variables match your search.';
+  }
 }
 
 // Always return an object with keys from config.variables using source if present,
@@ -358,6 +376,10 @@ function downloadJSON(){
 downloadBtn.addEventListener('click', downloadJSON);
 loadExampleBtn.addEventListener('click', loadExampleAndApply);
 resetBtn.addEventListener('click', resetToDefaults);
+searchInput.addEventListener('input', () => {
+  currentSearchTerm = searchInput.value.trim();
+  renderControlsForVariables();
+});
 
 async function init(){
   await loadConfig();
