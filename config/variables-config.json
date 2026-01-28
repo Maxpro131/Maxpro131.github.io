@@ -452,7 +452,7 @@
       "input": "slider",
       "min": 0.0,
       "max": 5,
-      "step": 0.1,
+      "step": 0.01,
       "readonly": false,
       "label": "Transparency of the right hotbar cycler",
       "help": "",
@@ -486,11 +486,109 @@
       "input": "slider",
       "min": 0.0,
       "max": 5,
-      "step": 0.1,
+      "step": 0.01,
       "readonly": false,
       "label": "Transparency of the left hotbar cycler",
       "help": "",
       "default": 0.8
+    },
+    "$dé:BO_button_alpha": {
+      "type": "number",
+      "input": "slider",
+      "min": 0.0,
+      "max": 5,
+      "step": 0.01,
+      "readonly": false,
+      "label": "Transparency of the brightness overlay buttons",
+      "help": "Touch control only",
+      "default": 0.8
+    },
+    "$dé:BO_decrease_position": {
+      "type": "choice",
+      "label": "Decrease Brightness Button Position",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "bottom_middle"
+    },
+    "$dé:BO_decrease_offset": {
+    "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Offset of the decrease brightness button",
+      "help": "X | Y",
+      "default": [115, -2]
+    },
+    "$dé:BO_decrease_size": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Size of the decrease brightness button",
+      "help": "",
+      "default": [24, 24]
+    },
+    "$dé:BO_increase_position": {
+      "type": "choice",
+      "label": "Increase Brightness Button Position",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "bottom_middle"
+    },
+    "$dé:BO_increase_offset": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Offset of the increase brightness button",
+      "help": "X | Y",
+      "default": [115, -23.5]
+    },
+    "$dé:BO_increase_size": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Size of the increase brightness button",
+      "help": "",
+      "default": [24, 24]
+    },
+    "$dé:show_day_highlight": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show Day Highlight",
+      "help": "",
+      "default": true
+    },
+    "$dé:day_highlight_anchor_from": {
+      "type": "choice",
+      "label": "",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "top_middle"
+    },
+    "$dé:day_highlight_anchor_to": {
+      "type": "choice",
+      "label": "",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "top_middle"
+    },
+    "$dé:day_highlight_offset": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Day Highlight Offset",
+      "help": "X | Y",
+      "default": [0, 24]
+    },
+    "$dé:day_highlight_duration": {
+      "type": "number",
+      "input": "slider",
+      "min": 0.0,
+      "max": 20,
+      "step": 0.5,
+      "readonly": false,
+      "label": "Day Highlight Duration",
+      "help": "",
+      "default": 8
     }
   }
 }
