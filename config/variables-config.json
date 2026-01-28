@@ -261,6 +261,150 @@
       "label": "Center Item Stack",
       "help": "",
       "default": false
+    },
+    "$dé:hud_menu-player_list": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Player List",
+      "help": "Toggle this off to disable the player list feature",
+      "default": true
+    },
+    "$dé:debugScreen_minecraft_version": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show minecraft version in F3",
+      "help": "",
+      "default": true
+    },
+    "$dé:debugScreen_world_name": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show world name in F3",
+      "help": "",
+      "default": true
+    },
+    "$dé:debugScreen_player_chunk_position": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show chunk borders in F3",
+      "help": "",
+      "default": true
+    },
+    "$dé:debugScreen_overworld_to_nether_position": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show overworld → nether coordinates in F3",
+      "help": "",
+      "default": true
+    },
+    "$dé:debugScreen_nether_to_overworld_position": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show nether → overworld coordinates in F3",
+      "help": "",
+      "default": true
+    },
+    "$dé:debugScreen_moon_phases": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show the current moon phase in F3",
+      "help": "",
+      "default": true
+    },
+    "$dé:debugScreen_xp_level": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show your xp level in F3",
+      "help": "",
+      "default": true
+    },
+    "$dé:debugScreen_xp_point": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show your xp points in F3",
+      "help": "",
+      "default": true
+    },
+    "$dé:debugScreen_inventory_storage": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show how many inventory slots are filled in F3",
+      "help": "",
+      "default": true
+    },
+    "$dé:enable_chunk_map": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Allow the chunk map feature",
+      "help": "Touch control only",
+      "default": true
+    },
+    "$dé:map_show_coordinates_text": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show coordinates in chunk map",
+      "help": "",
+      "default": true
+    },
+    "$dé:map_show_direction_text": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show directions in chunk map",
+      "help": "",
+      "default": true
+    },
+    "$dé:map_chunk_border_alpha": {
+      "type": "number",
+      "input": "text",
+      "readonly": false,
+      "label": "Chunk border opacity",
+      "help": "",
+      "default": 0.34
+    },
+    "$dé:map_background_alpha": {
+      "type": "number",
+      "input": "text",
+      "readonly": false,
+      "label": "Chunk map background opacity",
+      "help": "",
+      "default": 0.54
+    },
+    "$dé:map_chunk_grid": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Chunk Grid",
+      "help": "If chunk grid should be enabled by default",
+      "default": true
+    },
+    "$dé:map_view_around": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "View Around",
+      "help": "If viewing around should be enabled by default",
+      "default": true
+    },
+    "$dé:map_background": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Map Background",
+      "help": "If the map background should be hidden by default",
+      "default": true
     }
   }
 }
