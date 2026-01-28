@@ -150,6 +150,29 @@
       "label": "Night vision overlay color",
       "help": "Red, Green, Blue, Alpha",
       "default": [1.0, 1.0, 0.9881, 1.0]
+    },
+    "$dé:always_use_outside_button": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Always use NV outside buttons",
+      "help": "If the outside night vision buttons should always be visible",
+      "default": false
+    },
+    "$dé:utilities_hud_position": {
+      "type": "choice",
+      "label": "Utilities HUD position",
+      "help": "What corner the compass, clock and durability viewer should be shown at",
+      "choices": ["bottom_left", "bottom_right", "top_left", "top_right"],
+      "default": "bottom_left"
+    },
+    "$dé:utilities_hud_offset": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Offset of the Utilities HUD",
+      "help": "X | Y",
+      "default": [0, 0]
     }
   }
 }
