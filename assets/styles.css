@@ -113,33 +113,37 @@ small{color:var(--muted)}
 .badge{background:rgba(255,255,255,0.04);padding:6px;border-radius:6px;font-size:12px}
 .disabled{opacity:0.55}
 
-/* Array inputs: allow wrapping and keep items equal width; ensure wrapped items align left */
+/* Array inputs: CSS Grid, left-aligned so wrapped rows start at the left */
 .array-inputs{
-  display:flex;
-  gap:8px;
-  width:100%;
-  justify-content:flex-start; /* align wrapped rows to the left */
-  align-items:center;
-  flex-wrap:wrap;        /* wrap when not enough horizontal space */
-  box-sizing:border-box;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(56px, 1fr)); /* 3 equal columns on desktop */
+  gap: 8px;
+  width: 100%;            /* make grid span full available width */
+  box-sizing: border-box;
+  justify-content: start; /* ensure the grid itself is left-aligned inside the flex parent */
+  justify-items: stretch; /* make inputs fill their grid cells */
+  align-self: stretch;    /* ensure grid stretches vertically if needed */
 }
 
-/* Individual numeric array inputs: prefer 3 per row on desktop so the 4th wraps to next line */
+/* Inputs fill their grid cell */
 .array-inputs input{
-  flex: 0 0 calc((100% - 16px) / 3); /* 2 gaps between 3 items = 16px */
-  max-width: calc((100% - 16px) / 3);
-  min-width:56px;
-  box-sizing:border-box;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 56px;
 }
 
-/* Medium screens: 2 per row */
+/* Medium screens: 2 columns */
 @media (max-width: 720px) {
-  .array-inputs input{flex: 0 0 calc((100% - 8px) / 2); max-width: calc((100% - 8px) / 2); min-width:48px}
+  .array-inputs{
+    grid-template-columns: repeat(2, minmax(48px, 1fr));
+  }
 }
 
-/* Very small: full width stacked */
-@media (max-width:420px){
-  .array-inputs input{flex:0 0 100%; max-width:100%}
+/* Small screens: single column */
+@media (max-width: 420px) {
+  .array-inputs{
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Small helper text and badges */
