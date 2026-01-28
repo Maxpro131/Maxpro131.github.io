@@ -203,7 +203,7 @@
       "input": "toggle",
       "readonly": false,
       "label": "Hotbar Switcher",
-      "help": "If the hotbar switcher should be enabled by default. \nTouch control only",
+      "help": "If the hotbar switcher should be enabled by default.\n Touch control only",
       "default": false
     }
   }
