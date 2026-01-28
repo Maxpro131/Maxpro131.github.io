@@ -81,9 +81,12 @@
     },
     "$dé:player_list_header_bg_alpha": {
       "type": "number",
-      "input": "text",
+      "input": "slider",
+      "min": 0.0,
+      "max": 3,
+      "step": 0.01,
       "readonly": false,
-      "label": "",
+      "label": "Player List Header Transparency",
       "help": "",
       "default": 0.6
     },
@@ -97,9 +100,12 @@
     },
     "$dé:player_list_bg_alpha": {
       "type": "number",
-      "input": "text",
+      "input": "slider",
+      "min": 0.0,
+      "max": 3,
+      "step": 0.01,
       "readonly": false,
-      "label": "",
+      "label": "Player List Background Transparency",
       "help": "",
       "default": 0.0
     },
@@ -113,9 +119,12 @@
     },
     "$dé:player_list_item_bg_alpha": {
       "type": "number",
-      "input": "text",
+      "input": "slider",
+      "min": 0.0,
+      "max": 3,
+      "step": 0.01,
       "readonly": false,
-      "label": "",
+      "label": "Player List Item Background Transparency",
       "help": "",
       "default": 0.35
     },
@@ -129,9 +138,12 @@
     },
     "$dé:scoreboard_list_item_bg_alpha": {
       "type": "number",
-      "input": "text",
+      "input": "slider",
+      "min": 0.0,
+      "max": 3,
+      "step": 0.01,
       "readonly": false,
-      "label": "",
+      "label": "Scoreboard Background Transparency",
       "help": "",
       "default": 0.2
     },
@@ -368,17 +380,23 @@
     },
     "$dé:map_chunk_border_alpha": {
       "type": "number",
-      "input": "text",
+      "input": "slider",
+      "min": 0.0,
+      "max": 3,
+      "step": 0.01,
       "readonly": false,
-      "label": "Chunk border opacity",
+      "label": "Chunk Border Transparency",
       "help": "",
       "default": 0.34
     },
     "$dé:map_background_alpha": {
       "type": "number",
-      "input": "text",
+      "input": "slider",
+      "min": 0.0,
+      "max": 3,
+      "step": 0.01,
       "readonly": false,
-      "label": "Chunk map background opacity",
+      "label": "Map Background Transparency",
       "help": "",
       "default": 0.54
     },
@@ -405,6 +423,74 @@
       "label": "Map Background",
       "help": "If the map background should be hidden by default",
       "default": true
+    },
+    "$dé:hotbar_cycler_right_position": {
+      "type": "choice",
+      "label": "Hotbar Cycler Right Position",
+      "help": "Touch control only",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "bottom_middle"
+    },
+    "$dé:hotbar_cycler_right_offset": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Offset of the right hotbar cycler",
+      "help": "X | Y",
+      "default": [110, -43]
+    },
+    "$dé:hotbar_cycler_right_size": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Size of the right hotbar cycler",
+      "help": "",
+      "default": [24, 24]
+    },
+    "$dé:hotbar_cycler_right_alpha": {
+      "type": "number",
+      "input": "slider",
+      "min": 0.0,
+      "max": 5,
+      "step": 0.1,
+      "readonly": false,
+      "label": "Transparency of the right hotbar cycler",
+      "help": "",
+      "default": 0.8
+    },
+    "$dé:hotbar_cycler_left_position": {
+      "type": "choice",
+      "label": "Hotbar Cycler Left Position",
+      "help": "Touch control only",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "bottom_middle"
+    },
+    "$dé:hotbar_cycler_left_offset": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Offset of the left hotbar cycler",
+      "help": "X | Y",
+      "default": [82, -43]
+    },
+    "$dé:hotbar_cycler_left_size": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Size of the left hotbar cycler",
+      "help": "",
+      "default": [24, 24]
+    },
+    "$dé:hotbar_cycler_left_alpha": {
+      "type": "number",
+      "input": "slider",
+      "min": 0.0,
+      "max": 5,
+      "step": 0.1,
+      "readonly": false,
+      "label": "Transparency of the left hotbar cycler",
+      "help": "",
+      "default": 0.8
     }
   }
 }
