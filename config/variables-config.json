@@ -1,47 +1,91 @@
 {
   "pageName": "Déesse UI — Editor",
   "variables": {
-    "$show_particles": {
+    "$déesse_ui_global_variables_version": {
+      "type": "number",
+      "input": "text",
+      "readonly": true,
+      "label": "Config version",
+      "help": "",
+      "default": "3"
+    },
+    "$dé:show_inventory_full_notification": {
       "type": "boolean",
       "input": "toggle",
       "readonly": false,
-      "label": "Show particles",
-      "help": "Hi \"Test\" something",
+      "label": "Inventory full notification",
+      "help": "Enable or disable the \"Inventory full\" notification",
       "default": true
     },
-    "$ui_scale": {
+    "$dé:inv_full_notification_duration": {
       "type": "number",
       "input": "slider",
       "min": 0.5,
-      "max": 3,
-      "step": 0.1,
+      "max": 10,
+      "step": 0.5,
       "readonly": false,
-      "label": "UI scale",
-      "help": "Scale factor for the UI elements.",
-      "default": 1.25
+      "label": "Inventory full notification duration",
+      "help": "",
+      "default": 3
     },
-    "$position": {
-      "type": "number_array",
-      "count": 3,
+    "$dé:show_world_height_meter": {
+      "type": "boolean",
+      "input": "toggle",
       "readonly": false,
-      "label": "Position (x, y, z)",
-      "help": "Anchor position for the UI (3 floats).",
-      "default": [0.0, 1.0, -0.5]
+      "label": "",
+      "help": "",
+      "default": false
     },
-    "$title_text": {
-      "type": "string",
+    "$dé:show_item_durability_low_warning": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Durability low warning",
+      "help": "",
+      "default": true
+    },
+    "$dé:enable_center_item_stack": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": false
+    },
+    "$dé:use_bottom_chat": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "If the chat should be at the bottom",
+      "help": "Disable this option for the chat to be at the top",
+      "default": true
+    },
+    "$dé:show_progress_time_chat": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Shows progress time until a chat message disappears",
+      "help": "",
+      "default": true
+    },
+    "$dé:max_chat_item": {
+      "type": "number",
+      "input": "slider",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "readonly": false,
+      "label": "Maximum messages shown in chat",
+      "help": "Do not use decimal numbers",
+      "default": 50
+    },
+    "$dé:player_list_header_bg_alpha": {
+      "type": "number",
       "input": "text",
-      "readonly": true,
-      "label": "Title text",
-      "help": "Displayed title string in the UI.",
-      "default": "Déesse UI"
-    },
-    "$anchor_corner": {
-      "type": "choice",
-      "label": "Anchor corner",
-      "help": "Choose which screen corner to anchor the UI to.",
-      "choices": ["bottom_left", "bottom_right", "top_left", "top_right"],
-      "default": "bottom_left"
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": 0.6
     }
   }
 }
