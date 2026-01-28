@@ -86,6 +86,70 @@
       "label": "",
       "help": "",
       "default": 0.6
+    },
+    "$dé:player_list_header_bg_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Player list header background color",
+      "help": "",
+      "default": [0.0, 0.0, 0.0]
+    },
+    "$dé:player_list_bg_alpha": {
+      "type": "number",
+      "input": "text",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": 0.0
+    },
+    "$dé:player_list_bg_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Player list background color",
+      "help": "",
+      "default": [0.0, 0.0, 0.0]
+    },
+    "$dé:player_list_item_bg_alpha": {
+      "type": "number",
+      "input": "text",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": 0.35
+    },
+    "$dé:player_list_item_bg_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": [0.0, 0.0, 0.0]
+    },
+    "$dé:scoreboard_list_item_bg_alpha": {
+      "type": "number",
+      "input": "text",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": 0.2
+    },
+    "$dé:scoreboard_list_item_bg_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": [0.0, 0.0, 0.0]
+    },
+    "$dé:white_renderer_color": {
+      "type": "number_array",
+      "count": 4,
+      "readonly": false,
+      "label": "Night vision overlay color",
+      "help": "Red, Green, Blue, Alpha",
+      "default": [1.0, 1.0, 0.9881, 1.0]
     }
   }
 }
