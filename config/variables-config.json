@@ -173,6 +173,38 @@
       "label": "Offset of the Utilities HUD",
       "help": "X | Y",
       "default": [0, 0]
+    },
+    "$dé:hud_menu-debug_screen": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "F3 screen",
+      "help": "If the F3 screen should be enabled by default",
+      "default": false
+    },
+    "$dé:hud_menu-inventory_hud": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Inventory HUD",
+      "help": "If the inventory HUD should be enabled by default",
+      "default": false
+    },
+    "$dé:hud_menu-brightness_overlay": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Brightness Overlay",
+      "help": "If brightness overlay should be enabled by default",
+      "default": false
+    },
+    "$dé:hud_menu-hotbar_switcher": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Hotbar Switcher",
+      "help": "If the hotbar switcher should be enabled by default. \nTouch control only",
+      "default": false
     }
   }
 }
