@@ -113,21 +113,33 @@ small{color:var(--muted)}
 .badge{background:rgba(255,255,255,0.04);padding:6px;border-radius:6px;font-size:12px}
 .disabled{opacity:0.55}
 
-/* Array inputs: allow wrapping and shrink/grow behavior */
+/* Array inputs: allow wrapping and keep items equal width; ensure wrapped items align left */
 .array-inputs{
   display:flex;
   gap:8px;
   width:100%;
-  justify-content:flex-end;
+  justify-content:flex-start; /* align wrapped rows to the left */
+  align-items:center;
   flex-wrap:wrap;        /* wrap when not enough horizontal space */
+  box-sizing:border-box;
 }
 
-/* Individual numeric array inputs: responsive sizing */
+/* Individual numeric array inputs: prefer 3 per row on desktop so the 4th wraps to next line */
 .array-inputs input{
-  flex:1 1 28%;          /* try to show 3 across, but allow shrinking */
-  min-width:56px;        /* but keep readable */
-  max-width:160px;
+  flex: 0 0 calc((100% - 16px) / 3); /* 2 gaps between 3 items = 16px */
+  max-width: calc((100% - 16px) / 3);
+  min-width:56px;
   box-sizing:border-box;
+}
+
+/* Medium screens: 2 per row */
+@media (max-width: 720px) {
+  .array-inputs input{flex: 0 0 calc((100% - 8px) / 2); max-width: calc((100% - 8px) / 2); min-width:48px}
+}
+
+/* Very small: full width stacked */
+@media (max-width:420px){
+  .array-inputs input{flex:0 0 100%; max-width:100%}
 }
 
 /* Small helper text and badges */
