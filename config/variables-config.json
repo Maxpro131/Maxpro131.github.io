@@ -1,6 +1,11 @@
 {
   "pageName": "Déesse UI — Editor",
   "variables": {
+    "_section_whatever": {
+      "type": "section",
+      "label": "General Settings",
+      "help": "Random Stuff :)"
+    },
     "$déesse_ui_global_variables_version": {
       "type": "number",
       "input": "text",
@@ -52,6 +57,11 @@
       "help": "",
       "default": false
     },
+    "_section_whatever": {
+      "type": "section",
+      "label": "General Chat Settings",
+      "help": ""
+    },
     "$dé:use_bottom_chat": {
       "type": "boolean",
       "input": "toggle",
@@ -78,6 +88,11 @@
       "label": "Maximum messages shown in chat",
       "help": "Do not use decimal numbers",
       "default": 50
+    },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Player List",
+      "help": ""
     },
     "$dé:player_list_header_bg_alpha": {
       "type": "number",
@@ -155,6 +170,11 @@
       "help": "",
       "default": [0.0, 0.0, 0.0]
     },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Night Vision",
+      "help": ""
+    },
     "$dé:white_renderer_color": {
       "type": "number_array",
       "count": 4,
@@ -171,6 +191,11 @@
       "help": "If the outside night vision buttons should always be visible",
       "default": false
     },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Utilities HUD Settings",
+      "help": ""
+    },
     "$dé:utilities_hud_position": {
       "type": "choice",
       "label": "Utilities HUD position",
@@ -185,6 +210,11 @@
       "label": "Offset of the Utilities HUD",
       "help": "X | Y",
       "default": [0, 0]
+    },
+    "_section_whatever": {
+      "type": "section",
+      "label": "HUD Menu Settings",
+      "help": ""
     },
     "$dé:hud_menu-debug_screen": {
       "type": "boolean",
@@ -282,6 +312,11 @@
       "help": "Toggle this off to disable the player list feature",
       "default": true
     },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Debug Menu Settings",
+      "help": "Settings of the F3 menu"
+    },
     "$dé:debugScreen_minecraft_version": {
       "type": "boolean",
       "input": "toggle",
@@ -354,6 +389,11 @@
       "help": "",
       "default": true
     },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Chunk Map",
+      "help": ""
+    },
     "$dé:enable_chunk_map": {
       "type": "boolean",
       "input": "toggle",
@@ -424,6 +464,11 @@
       "help": "If the map background should be hidden by default",
       "default": true
     },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Hotbar cycler →",
+      "help": ""
+    },
     "$dé:hotbar_cycler_right_position": {
       "type": "choice",
       "label": "Hotbar Cycler Right Position",
@@ -458,6 +503,11 @@
       "help": "",
       "default": 0.8
     },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Hotbar cycler ←",
+      "help": ""
+    },
     "$dé:hotbar_cycler_left_position": {
       "type": "choice",
       "label": "Hotbar Cycler Left Position",
@@ -491,6 +541,11 @@
       "label": "Transparency of the left hotbar cycler",
       "help": "",
       "default": 0.8
+    },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Brightness Overlay",
+      "help": ""
     },
     "$dé:BO_button_alpha": {
       "type": "number",
@@ -549,6 +604,11 @@
       "help": "",
       "default": [24, 24]
     },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Day Highlight",
+      "help": ""
+    },
     "$dé:show_day_highlight": {
       "type": "boolean",
       "input": "toggle",
@@ -589,6 +649,11 @@
       "label": "Day Highlight Duration",
       "help": "",
       "default": 8
+    },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Chunk Viewer",
+      "help": ""
     },
     "$dé:show_chunk_label": {
       "type": "boolean",
@@ -641,6 +706,11 @@
       "label": "Chunk Height Meter Offset",
       "help": "X | Y",
       "default": [-78, 6]
+    },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Inventory HUD",
+      "help": ""
     },
     "$dé:inventory_hud_position": {
       "type": "choice",
@@ -703,6 +773,11 @@
       "help": "",
       "default": 0.27
     },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Déesse Button",
+      "help": ""
+    },
     "$dé:gui_button_option_size": {
       "type": "choice",
       "label": "Déesse Button Size",
@@ -759,6 +834,11 @@
       "help": "",
       "default": 0.8
     },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Déesse Chat Settings",
+      "help": ""
+    },
     "$dé:show_background_chat": {
     "type": "boolean",
       "input": "toggle",
@@ -782,6 +862,19 @@
       "label": "Shows a preview of the message you're about to send above the text box",
       "help": "Useful for testing § formatting before sending",
       "default": false
+    },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Container Screen",
+      "help": ""
+    },
+    "$dé:show_flying_item_renderer": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Item animation when ",
+      "help": "",
+      "default": true
     }
   }
 }
