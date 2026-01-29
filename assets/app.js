@@ -254,11 +254,27 @@ function makeControl(key, value, desc){
 
 function matchesSearch(key, desc, searchTerm){
   if(!searchTerm) return true;
+  if(desc && desc.type === 'section') return false;
   const term = searchTerm.toLowerCase();
   const keyMatch = key.toLowerCase().includes(term);
   const labelMatch = desc && desc.label && desc.label.toLowerCase().includes(term);
   const helpMatch = desc && desc.help && desc.help.toLowerCase().includes(term);
   return keyMatch || labelMatch || helpMatch;
+}
+
+function makeSection(desc){
+  const section = document.createElement('div');
+  section.className = 'section-header';
+  const title = document.createElement('h3');
+  title.textContent = desc.label || 'Section';
+  section.appendChild(title);
+  if(desc.help){
+    const helpText = document.createElement('p');
+    helpText.className = 'section-help';
+    helpText.textContent = desc.help;
+    section.appendChild(helpText);
+  }
+  return section;
 }
 
 function renderControlsForVariables(){
@@ -272,6 +288,12 @@ function renderControlsForVariables(){
   let visibleCount = 0;
   keys.forEach(k => {
     const desc = vars[k] || {};
+    if(desc.type === 'section'){
+      if(!currentSearchTerm){
+        controlsEl.appendChild(makeSection(desc));
+      }
+      return;
+    }
     if(!matchesSearch(k, desc, currentSearchTerm)) return;
     const val = variables[k] !== undefined ? variables[k] : defaultFor(desc);
     controlsEl.appendChild(makeControl(k, val, desc));
@@ -288,6 +310,8 @@ function buildSanitizedFromSource(source){
   const out = {};
   const vars = config.variables || {};
   Object.keys(vars).forEach(k => {
+    const desc = vars[k];
+    if(desc && desc.type === 'section') return;
     if(source && Object.prototype.hasOwnProperty.call(source, k)) {
       out[k] = source[k];
     } else {
@@ -384,9 +408,20 @@ searchInput.addEventListener('input', () => {
 async function init(){
   await loadConfig();
 
+  // Clean up any section keys from old session storage
+  function cleanSectionKeys(obj){
+    if(!obj) return obj;
+    const vars = config.variables || {};
+    Object.keys(obj).forEach(k => {
+      if(vars[k] && vars[k].type === 'section') delete obj[k];
+    });
+    return obj;
+  }
+
   // If there's a saved last-user state in sessionStorage, restore it as the starting variables.
   // Otherwise load the example (and save defaults).
-  const saved = loadUserState();
+  let saved = loadUserState();
+  saved = cleanSectionKeys(saved);
   if(saved){
     // Also load defaults from storage if present (so reset still works against a stored default)
     try {
