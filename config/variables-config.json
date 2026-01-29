@@ -359,7 +359,7 @@
       "input": "toggle",
       "readonly": false,
       "label": "Allow the chunk map feature",
-      "help": "Touch control only",
+      "help": "Touch control & full features only",
       "default": true
     },
     "$dé:map_show_coordinates_text": {
@@ -589,6 +589,199 @@
       "label": "Day Highlight Duration",
       "help": "",
       "default": 8
+    },
+    "$dé:show_chunk_label": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show chunk label in the chunk viewer",
+      "help": "",
+      "default": true
+    },
+    "$dé:chunk_viewer_anchor_from": {
+      "type": "choice",
+      "label": "",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "top_right"
+    },
+    "$dé:chunk_viewer_anchor_to": {
+      "type": "choice",
+      "label": "",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "top_right"
+    },
+    "$dé:chunk_viewer_offset": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Chunk Viewer Offset",
+      "help": "X | Y",
+      "default": [-4, 4]
+    },
+    "$dé:chunk_height_meter_anchor_from": {
+      "type": "choice",
+      "label": "",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "top_right"
+    },
+    "$dé:chunk_height_meter_anchor_to": {
+      "type": "choice",
+      "label": "",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "top_right"
+    },
+    "$dé:chunk_height_meter_offset": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Chunk Height Meter Offset",
+      "help": "X | Y",
+      "default": [-78, 6]
+    },
+    "$dé:inventory_hud_position": {
+      "type": "choice",
+      "label": "Inventory HUD Position",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "bottom_right"
+    },
+    "$dé:inventory_hud_offset": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Inventory HUD Offset",
+      "help": "X | Y",
+      "default": [-1, -1]
+    },
+    "$dé:use_highlight_slot": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "If the slots should be highlighted that contain the item you're holding",
+      "help": "full features only",
+      "default": true
+    },
+    "$dé:highlight_slot_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Highlighted Slot Color",
+      "help": "Red, Green, Blue",
+      "default": [0, 1, 0]
+    },
+    "$dé:highlight_slot_alpha": {
+      "type": "number",
+      "input": "slider",
+      "min": 0.0,
+      "max": 3,
+      "step": 0.01,
+      "readonly": false,
+      "label": "Highlighted Slot Transparency",
+      "help": "",
+      "default": 0.24
+    },
+    "$dé:inventory_slot_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Inventory HUD Slot Color",
+      "help": "Red, Green, Blue",
+      "default": [0, 0, 0]
+    },
+    "$dé:inventory_slot_alpha": {
+      "type": "number",
+      "input": "slider",
+      "min": 0.0,
+      "max": 3,
+      "step": 0.01,
+      "readonly": false,
+      "label": "Inventory HUD Slot Transparency",
+      "help": "",
+      "default": 0.27
+    },
+    "$dé:gui_button_option_size": {
+      "type": "choice",
+      "label": "Déesse Button Size",
+      "help": "Touch control only",
+      "choices": ["default", "small", "medium", "big"],
+      "default": "default"
+    },
+    "$dé:enable_gui_button_customization": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "GUI Button Customization",
+      "help": "Enable this setting before editing the button variables below",
+      "default": false
+    },
+    "$dé:gui_button_size": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Custom Déesse Button Size",
+      "help": "X | Y ; has priority over $dé:gui_button_option_size",
+      "default": [18, 18]
+    },
+    "$dé:gui_button_anchor_from": {
+      "type": "choice",
+      "label": "",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "top_middle"
+    },
+    "$dé:gui_button_anchor_to": {
+      "type": "choice",
+      "label": "",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "top_right"
+    },
+    "$dé:gui_button_offset": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Custom Déesse Button Offset",
+      "help": "X | Y",
+      "default": [-38.5, 1]
+    },
+    "$dé:gui_button_alpha": {
+      "type": "number",
+      "input": "slider",
+      "min": 0.0,
+      "max": 3,
+      "step": 0.01,
+      "readonly": false,
+      "label": "Déesse Button Transparency",
+      "help": "",
+      "default": 0.8
+    },
+    "$dé:show_background_chat": {
+    "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Default Chat Opacity",
+      "help": "Disable this setting to make the chat background transparent",
+      "default": true
+    },
+    "$dé:switch_text_box": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "If \"Custom Text Box\" feature should be enabled by default",
+      "help": "Makes messages not vanish from text box after sending them",
+      "default": false
+    },
+    "$dé:show_preview_chat": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Shows a preview of the message you're about to send above the text box",
+      "help": "Useful for testing § formatting before sending",
+      "default": false
     }
   }
 }
