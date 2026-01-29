@@ -198,3 +198,30 @@ small{color:var(--muted)}
 .search-container input::placeholder{
   color:var(--muted);
 }
+
+.section-header{
+  margin-top:32px;
+  margin-bottom:16px;
+  padding:16px 20px;
+  background:linear-gradient(135deg, var(--card-strong) 0%, #0d1830 100%);
+  border-left:4px solid var(--accent);
+  border-radius:0 10px 10px 0;
+}
+
+.section-header h3{
+  margin:0;
+  font-size:1.3rem;
+  font-weight:600;
+  color:var(--text);
+  letter-spacing:0.02em;
+}
+
+.section-header .section-help{
+  margin:8px 0 0 0;
+  font-size:0.95rem;
+  color:var(--muted);
+}
+
+.section-header:first-child{
+  margin-top:0;
+}
