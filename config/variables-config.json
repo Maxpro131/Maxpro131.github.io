@@ -782,6 +782,335 @@
       "label": "Shows a preview of the message you're about to send above the text box",
       "help": "Useful for testing § formatting before sending",
       "default": false
+    },
+    "$dé:show_flying_item_renderer": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "The animation when moving items in the inventory",
+      "help": "",
+      "default": true
+    },
+    "$dé:show_rarity_highlight": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "rarity outline on items (except common)",
+      "help": "",
+      "default": false
+    },
+    "$dé:use_number_bundle_count": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Green number on bundle to shown how many items are in there",
+      "help": "",
+      "default": true
+    },
+    "$dé:bundle_touch_tooltip_offset": {
+      "type": "number_array",
+      "count": 2,
+      "readonly": false,
+      "label": "Custom Bundle Tooltip Offset",
+      "help": "X | Y",
+      "default": [0, -8]
+    },
+    "$dé:item_tooltip_display_bg_alpha": {
+      "type": "number",
+      "input": "slider",
+      "min": 0.0,
+      "max": 5,
+      "step": 0.01,
+      "readonly": false,
+      "label": "Item Tooltip Transparency",
+      "help": "",
+      "default": 0.45
+    },
+    "$dé:instant_button_click_exit": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Double click Instant button to exit from container screen",
+      "help": "",
+      "default": true
+    },
+    "$dé_QC:show_search_bar": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Search Bar inside Containers",
+      "help": "",
+      "default": true
+    },
+    "$dé_QC:show_quick_move_items": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Quick Move/Drop Items in Container",
+      "help": "",
+      "default": true
+    },
+    "$dé_QC:show_quick_move_items_inv": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Quick Move/Drop Items in Inventory",
+      "help": "",
+      "default": true
+    },
+    "$dé_QC:multiple_craft_button_amount": {
+      "type": "number",
+      "input": "slider",
+      "min": 1,
+      "max": 64,
+      "step": 1,
+      "readonly": false,
+      "label": "Amount of times the multiple craft button should craft",
+      "help": "",
+      "default": 4
+    },
+    "$dé:enable_force_spectator": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Allow force spectator feature",
+      "help": "",
+      "default": true
+    },
+    "$dé:include_entities": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Include Entities in Minimap Renderer",
+      "help": "",
+      "default": true
+    },
+    "$dé:bottom_left_corner": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Rendered Area",
+      "help": "Bottom Left Corner",
+      "default": [-128, -60, -128]
+    },
+    "$dé:top_right_corner": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Rendered Area",
+      "help": "Top Right Corner",
+      "default": [128, 316, 128]
+    },
+    "$dé:force_render_below": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Render HUD screen when overlapping with other screens",
+      "help": "",
+      "default": false
+    },
+    "$dé:enable_trade_unlocker": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Shows you what items you get before unlocking them",
+      "help": "",
+      "default": true
+    },
+    "$dé:enable_item_id_offset_editor": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Ingame Item ID Offset Editor",
+      "help": "",
+      "default": false
+    },
+    "$dé:item_id_offset": {
+      "type": "number",
+      "input": "text",
+      "readonly": false,
+      "label": "Enter the total of new items from the addons you installed",
+      "help": "",
+      "default": 0
+    },
+    "$dé:progress_background_alpha": {
+      "type": "number",
+      "input": "slider",
+      "min": 0.0,
+      "max": 3,
+      "step": 0.01,
+      "readonly": false,
+      "label": "Progress Background Transparency",
+      "help": "",
+      "default": 0.45
+    },
+    "$dé:show_trial_timer": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show Trial Timer in Pause Screen",
+      "help": "",
+      "default": false
+    },
+    "$dé:show_ui_loaded_toast": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show \"Déesse UI has been loaded!\" Toast",
+      "help": "",
+      "default": true
+    },
+    "$oreui_default_text_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Default Text Color of OreUI",
+      "help": "",
+      "default": [0.117, 0.117, 0.121]
+    },
+    "$oreui_light_text_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Light Text Color of OreUI",
+      "help": "",
+      "default": [1.0, 1.0, 1.0]
+    },
+    "$déesse_oreui_light_button_default_text_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Default Light Button Text Color of OreUI",
+      "help": "",
+      "default": [0.117, 0.117, 0.121]
+    },
+    "$déesse_oreui_light_button_hover_text_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Light Button Hover Text Color of OreUI",
+      "help": "",
+      "default": [0.117, 0.117, 0.121]
+    },
+    "$déesse_oreui_light_button_pressed_text_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Pressed Light Button Text Color of OreUI",
+      "help": "",
+      "default": [0.117, 0.117, 0.121]
+    },
+    "$déesse_oreui_light_button_locked_text_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Locked Light Button Text Color of OreUI",
+      "help": "",
+      "default": [0.3, 0.3, 0.3]
+    },
+    "$déesse_oreui_red_button_default_text_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Default Red Button Text Color of OreUI",
+      "help": "",
+      "default": [1.0, 1.0, 1.0]
+    },
+    "$déesse_oreui_red_button_hover_text_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Red Button Hover Text Color of OreUI",
+      "help": "",
+      "default": [1.0, 1.0, 1.0]
+    },
+    "$déesse_oreui_red_button_pressed_text_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "Pressed Red Button Text Color of OreUI",
+      "help": "",
+      "default": [1.0, 1.0, 1.0]
+    },
+    "$is_déesse_ui_pack": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": true,
+      "label": "",
+      "help": "",
+      "default": true
+    },
+    "$id_déesse_ui_global_variables_loaded": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": true,
+      "label": "",
+      "help": "",
+      "default": true
+    },
+    "$déesse_ui_pack_name": {
+      "type": "string",
+      "input": "text",
+      "readonly": true,
+      "label": "",
+      "help": "",
+      "default": "Déesse UI Pack"
+    },
+    "$déesse_ui_pack_version": {
+      "type": "string",
+      "input": "text",
+      "readonly": true,
+      "label": "",
+      "help": "",
+      "default": "v1.3.0 (112)"
+    },
+    "$déesse_start_text": {
+      "type": "string",
+      "input": "text",
+      "readonly": true,
+      "label": "",
+      "help": "",
+      "default": "Déesse UI v1.3.0"
+    },
+    "$deesse_ui_debug_mode": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Shows processes in the top right corner",
+      "help": "for debugging purposes",
+      "default": false
+    },
+    "$dés:force_use_hud_menu_desktop": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Force Déesse HUD on Desktop",
+      "help": "for debugging purposes",
+      "default": false
+    },
+    "$dé:vanilla_id_offset": {
+      "type": "number",
+      "input": "text",
+      "readonly": false,
+      "label": "Item ID Offset when Minecraft added new items (unused)",
+      "help": "",
+      "default": 0
+    },
+    "$dé:durability_current_value": {
+      "type": "string",
+      "input": "text",
+      "readonly": true,
+      "label": "",
+      "help": "",
+      "default": "(#current_value + (#current_value < #item_durability_current_amount) - (#current_value > #item_durability_current_amount))"
+    },
+    "$dé:durability_total_value": {
+      "type": "string",
+      "input": "text",
+      "readonly": true,
+      "label": "",
+      "help": "",
+      "default": "(#total_value + (#total_value < #item_durability_total_amount) - (#total_value > #item_durability_total_amount))"
     }
   }
 }
