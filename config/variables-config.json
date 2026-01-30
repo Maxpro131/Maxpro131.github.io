@@ -1,6 +1,11 @@
 {
   "pageName": "Déesse UI — Editor",
   "variables": {
+    "_section_general": {
+      "type": "section",
+      "label": "General Settings",
+      "help": "Random stuff :)"
+    },
     "$déesse_ui_global_variables_version": {
       "type": "number",
       "input": "text",
@@ -51,6 +56,11 @@
       "label": "",
       "help": "",
       "default": false
+    },
+    "_section_chat_general": {
+      "type": "section",
+      "label": "General Chat Settings",
+      "help": ""
     },
     "$dé:use_bottom_chat": {
       "type": "boolean",
