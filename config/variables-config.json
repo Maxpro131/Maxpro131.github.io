@@ -89,6 +89,11 @@
       "help": "Do not use decimal numbers",
       "default": 50
     },
+    "_section_player_list": {
+      "type": "section",
+      "label": "Player List",
+      "help": ""
+    },
     "$dé:player_list_header_bg_alpha": {
       "type": "number",
       "input": "slider",
@@ -165,6 +170,11 @@
       "help": "",
       "default": [0.0, 0.0, 0.0]
     },
+    "_section_nv": {
+      "type": "section",
+      "label": "Night Vision",
+      "help": ""
+    },
     "$dé:white_renderer_color": {
       "type": "number_array",
       "count": 4,
@@ -181,6 +191,11 @@
       "help": "If the outside night vision buttons should always be visible",
       "default": false
     },
+    "_section_utilities_hud": {
+      "type": "section",
+      "label": "Utilities HUD Settings",
+      "help": ""
+    },
     "$dé:utilities_hud_position": {
       "type": "choice",
       "label": "Utilities HUD position",
@@ -195,6 +210,11 @@
       "label": "Offset of the Utilities HUD",
       "help": "X | Y",
       "default": [0, 0]
+    },
+    "_section_hud_menu": {
+      "type": "section",
+      "label": "HUD Menu Settings",
+      "help": ""
     },
     "$dé:hud_menu-debug_screen": {
       "type": "boolean",
@@ -292,6 +312,11 @@
       "help": "Toggle this off to disable the player list feature",
       "default": true
     },
+    "_section_f3": {
+      "type": "section",
+      "label": "Debug Menu Settings",
+      "help": "Settings of the F3 menu"
+    },
     "$dé:debugScreen_minecraft_version": {
       "type": "boolean",
       "input": "toggle",
@@ -364,6 +389,11 @@
       "help": "",
       "default": true
     },
+    "_section_chunk_map": {
+      "type": "section",
+      "label": "Chunk Map",
+      "help": ""
+    },
     "$dé:enable_chunk_map": {
       "type": "boolean",
       "input": "toggle",
@@ -434,6 +464,11 @@
       "help": "If the map background should be hidden by default",
       "default": true
     },
+    "_section_hotbar_cycler_right": {
+      "type": "section",
+      "label": "Hotbar cycler →",
+      "help": ""
+    },
     "$dé:hotbar_cycler_right_position": {
       "type": "choice",
       "label": "Hotbar Cycler Right Position",
@@ -468,6 +503,11 @@
       "help": "",
       "default": 0.8
     },
+    "_section_hotbar_cycler_left": {
+      "type": "section",
+      "label": "Hotbar cycler ←",
+      "help": ""
+    },
     "$dé:hotbar_cycler_left_position": {
       "type": "choice",
       "label": "Hotbar Cycler Left Position",
@@ -501,6 +541,11 @@
       "label": "Transparency of the left hotbar cycler",
       "help": "",
       "default": 0.8
+    },
+    "_section_whatever": {
+      "type": "section",
+      "label": "Brightness Overlay",
+      "help": "(Night Vision Buttons)"
     },
     "$dé:BO_button_alpha": {
       "type": "number",
@@ -559,6 +604,11 @@
       "help": "",
       "default": [24, 24]
     },
+    "_section_day_highlight": {
+      "type": "section",
+      "label": "Day Highlight",
+      "help": ""
+    },
     "$dé:show_day_highlight": {
       "type": "boolean",
       "input": "toggle",
@@ -599,6 +649,11 @@
       "label": "Day Highlight Duration",
       "help": "",
       "default": 8
+    },
+    "_section_chunk_viewer": {
+      "type": "section",
+      "label": "Chunk Viewer",
+      "help": ""
     },
     "$dé:show_chunk_label": {
       "type": "boolean",
@@ -651,6 +706,11 @@
       "label": "Chunk Height Meter Offset",
       "help": "X | Y",
       "default": [-78, 6]
+    },
+    "_section_inv_hud": {
+      "type": "section",
+      "label": "Inventory HUD",
+      "help": ""
     },
     "$dé:inventory_hud_position": {
       "type": "choice",
@@ -713,6 +773,11 @@
       "help": "",
       "default": 0.27
     },
+    "_section_déesse_button": {
+      "type": "section",
+      "label": "Déesse Button",
+      "help": ""
+    },
     "$dé:gui_button_option_size": {
       "type": "choice",
       "label": "Déesse Button Size",
@@ -769,6 +834,11 @@
       "help": "",
       "default": 0.8
     },
+    "_section_déesse_chat": {
+      "type": "section",
+      "label": "Déesse Chat Settings",
+      "help": ""
+    },
     "$dé:show_background_chat": {
     "type": "boolean",
       "input": "toggle",
@@ -792,6 +862,11 @@
       "label": "Shows a preview of the message you're about to send above the text box",
       "help": "Useful for testing § formatting before sending",
       "default": false
+    },
+    "_section_container_screen": {
+      "type": "section",
+      "label": "Container Screen",
+      "help": ""
     },
     "$dé:show_flying_item_renderer": {
       "type": "boolean",
@@ -836,6 +911,11 @@
       "help": "",
       "default": 0.45
     },
+    "_section_qc": {
+      "type": "section",
+      "label": "Quick Container",
+      "help": ""
+    },
     "$dé:instant_button_click_exit": {
       "type": "boolean",
       "input": "toggle",
@@ -879,6 +959,11 @@
       "help": "",
       "default": 4
     },
+    "_section_settings_screen": {
+      "type": "section",
+      "label": "Settings Screen",
+      "help": ""
+    },
     "$dé:enable_force_spectator": {
       "type": "boolean",
       "input": "toggle",
@@ -886,6 +971,11 @@
       "label": "Allow force spectator feature",
       "help": "",
       "default": true
+    },
+    "_section_minimap": {
+      "type": "section",
+      "label": "Minimap Renderer",
+      "help": ""
     },
     "$dé:include_entities": {
       "type": "boolean",
@@ -911,6 +1001,11 @@
       "help": "Top Right Corner",
       "default": [128, 316, 128]
     },
+    "_section_other": {
+      "type": "section",
+      "label": "Other Stuff",
+      "help": ""
+    },
     "$dé:force_render_below": {
       "type": "boolean",
       "input": "toggle",
@@ -919,6 +1014,11 @@
       "help": "",
       "default": false
     },
+    "_section_trade": {
+      "type": "section",
+      "label": "Trade Screen",
+      "help": ""
+    },
     "$dé:enable_trade_unlocker": {
       "type": "boolean",
       "input": "toggle",
@@ -926,6 +1026,11 @@
       "label": "Shows you what items you get before unlocking them",
       "help": "",
       "default": true
+    },
+    "_section_item_id_offset": {
+      "type": "section",
+      "label": "Item ID Offset",
+      "help": ""
     },
     "$dé:enable_item_id_offset_editor": {
       "type": "boolean",
@@ -943,6 +1048,11 @@
       "help": "",
       "default": 0
     },
+    "_section_progress": {
+      "type": "section",
+      "label": "Progress Screen",
+      "help": ""
+    },
     "$dé:progress_background_alpha": {
       "type": "number",
       "input": "slider",
@@ -954,6 +1064,11 @@
       "help": "",
       "default": 0.45
     },
+    "_section_pause": {
+      "type": "section",
+      "label": "Pause Screen",
+      "help": ""
+    },
     "$dé:show_trial_timer": {
       "type": "boolean",
       "input": "toggle",
@@ -962,6 +1077,11 @@
       "help": "",
       "default": false
     },
+    "_section_start": {
+      "type": "section",
+      "label": "Start Screen",
+      "help": ""
+    },
     "$dé:show_ui_loaded_toast": {
       "type": "boolean",
       "input": "toggle",
@@ -969,6 +1089,11 @@
       "label": "Show \"Déesse UI has been loaded!\" Toast",
       "help": "",
       "default": true
+    },
+    "_section_oreui": {
+      "type": "section",
+      "label": "OreUI",
+      "help": ""
     },
     "$oreui_default_text_color": {
       "type": "number_array",
@@ -1042,6 +1167,11 @@
       "help": "",
       "default": [1.0, 1.0, 1.0]
     },
+    "_section_compatibility": {
+      "type": "section",
+      "label": "Compatibility Stuff",
+      "help": ""
+    },
     "$is_déesse_ui_pack": {
       "type": "boolean",
       "input": "toggle",
@@ -1082,6 +1212,11 @@
       "help": "",
       "default": "Déesse UI v1.3.0"
     },
+    "_section_debugging": {
+      "type": "section",
+      "label": "Debugging Stuff",
+      "help": ""
+    },
     "$deesse_ui_debug_mode": {
       "type": "boolean",
       "input": "toggle",
@@ -1098,13 +1233,23 @@
       "help": "for debugging purposes",
       "default": false
     },
+    "_section_vanilla_id_offset": {
+      "type": "section",
+      "label": "Vanilla Item ID Offset",
+      "help": "Item ID Offset when Minecraft added new items (unused)"
+    },
     "$dé:vanilla_id_offset": {
       "type": "number",
       "input": "text",
       "readonly": false,
-      "label": "Item ID Offset when Minecraft added new items (unused)",
+      "label": "",
       "help": "",
       "default": 0
+    },
+    "_section_durability": {
+      "type": "section",
+      "label": "Durability code by @dimzcraft",
+      "help": "DM that person if you want to use these codes"
     },
     "$dé:durability_current_value": {
       "type": "string",
