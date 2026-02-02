@@ -114,6 +114,15 @@ function saveDefaultsToStorage(){
   }
 }
 
+function updateModifiedStatus(key, value, rowEl) {
+  const isModified = JSON.stringify(value) !== JSON.stringify(defaults[key]);
+  if (isModified) {
+    rowEl.classList.add('modified');
+  } else {
+    rowEl.classList.remove('modified');
+  }
+}
+
 function makeControl(key, value, desc){
   const row = document.createElement('div');
   row.className = 'control-row';
@@ -134,6 +143,7 @@ function makeControl(key, value, desc){
     input.addEventListener('change', () => {
       variables[key] = input.checked;
       updatePreview();
+      updateModifiedStatus(key, variables[key], row);
     });
     right.appendChild(input);
 
@@ -158,6 +168,7 @@ function makeControl(key, value, desc){
       fallback.addEventListener('input', () => {
         variables[key] = fallback.value;
         updatePreview();
+        updateModifiedStatus(key, variables[key], row);
       });
       right.appendChild(fallback);
     } else {
@@ -169,6 +180,7 @@ function makeControl(key, value, desc){
       select.addEventListener('change', () => {
         variables[key] = select.value;
         updatePreview();
+        updateModifiedStatus(key, variables[key], row);
       });
       right.appendChild(select);
     }
@@ -192,11 +204,24 @@ function makeControl(key, value, desc){
       number.value = range.value;
       variables[key] = Number(range.value);
       updatePreview();
+      updateModifiedStatus(key, variables[key], row);
     });
     number.addEventListener('input', () => {
+      if (number.value === '') return;
       range.value = number.value;
       variables[key] = Number(number.value);
       updatePreview();
+      updateModifiedStatus(key, variables[key], row);
+    });
+    number.addEventListener('blur', () => {
+      if (number.value === '') {
+        const resetVal = defaultFor(desc);
+        variables[key] = resetVal;
+        number.value = resetVal;
+        range.value = resetVal;
+        updatePreview();
+        updateModifiedStatus(key, variables[key], row);
+      }
     });
 
     right.appendChild(range);
@@ -216,10 +241,23 @@ function makeControl(key, value, desc){
       num.disabled = readonly;
       num.dataset.index = i;
       num.addEventListener('input', () => {
+        if (num.value === '') return;
         const idx = Number(num.dataset.index);
         if(!Array.isArray(variables[key])) variables[key] = Array(count).fill(0);
         variables[key][idx] = Number(num.value);
         updatePreview();
+        updateModifiedStatus(key, variables[key], row);
+      });
+      num.addEventListener('blur', () => {
+        if (num.value === '') {
+          const idx = Number(num.dataset.index);
+          const defArr = defaultFor(desc);
+          const resetVal = defArr[idx];
+          variables[key][idx] = resetVal;
+          num.value = resetVal;
+          updatePreview();
+          updateModifiedStatus(key, variables[key], row);
+        }
       });
       container.appendChild(num);
     }
@@ -232,12 +270,25 @@ function makeControl(key, value, desc){
     input.value = (typeof value === 'object' && value !== null) ? JSON.stringify(value) : String(value ?? '');
     input.disabled = readonly;
     input.addEventListener('input', () => {
+      if (isNumber && input.value === '') return;
       let val;
-      if(isNumber) val = (input.value === '') ? null : Number(input.value);
+      if(isNumber) val = Number(input.value);
       else val = input.value;
       variables[key] = val;
       updatePreview();
+      updateModifiedStatus(key, variables[key], row);
     });
+    if (isNumber) {
+      input.addEventListener('blur', () => {
+        if (input.value === '') {
+          const resetVal = defaultFor(desc);
+          variables[key] = resetVal;
+          input.value = resetVal;
+          updatePreview();
+          updateModifiedStatus(key, variables[key], row);
+        }
+      });
+    }
     right.appendChild(input);
   }
 
@@ -247,6 +298,9 @@ function makeControl(key, value, desc){
     badge.textContent = 'readonly';
     right.appendChild(badge);
   }
+
+  // Initial modified status
+  updateModifiedStatus(key, value, row);
 
   row.appendChild(right);
   return row;
@@ -303,6 +357,23 @@ function renderControlsForVariables(){
     controlsEl.textContent = 'No variables match your search.';
   }
 }
+
+// Scroll to top functionality
+const scrollToTopBtn = document.getElementById('scrollToTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollToTopBtn.classList.add('visible');
+  } else {
+    scrollToTopBtn.classList.remove('visible');
+  }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
 
 // Always return an object with keys from config.variables using source if present,
 // otherwise falling back to desc.default or a sensible default.
