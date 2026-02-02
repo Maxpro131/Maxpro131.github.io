@@ -225,3 +225,44 @@ small{color:var(--muted)}
 .section-header:first-child{
   margin-top:0;
 }
+
+/* Scroll to top button */
+#scrollToTop {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #9ad6ff;
+  color: #071024;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+
+#scrollToTop.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+#scrollToTop:hover {
+  transform: translateY(-4px);
+  background-color: #b3e0ff;
+}
+
+/* Modified variable highlight */
+.control-row.modified {
+  border: 1px solid transparent !important;
+  background-image: linear-gradient(var(--card), var(--card)), 
+                    linear-gradient(135deg, #00ff88 0%, #00d4ff 100%) !important;
+  background-origin: border-box !important;
+  background-clip: padding-box, border-box !important;
+}
