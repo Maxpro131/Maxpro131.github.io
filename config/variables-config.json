@@ -578,7 +578,7 @@
       "readonly": false,
       "label": "Size of the decrease brightness button",
       "help": "",
-      "default": [24, 24]
+      "default": [18, 18]
     },
     "$dé:BO_increase_position": {
       "type": "choice",
@@ -601,7 +601,7 @@
       "readonly": false,
       "label": "Size of the increase brightness button",
       "help": "",
-      "default": [24, 24]
+      "default": [18, 18]
     },
     "_section_day_highlight": {
       "type": "section",
@@ -613,7 +613,7 @@
       "input": "toggle",
       "readonly": false,
       "label": "Show Day Highlight",
-      "help": "",
+      "help": "Day Highlight shows you your played days on special ones like 100th with a nice little pop-up",
       "default": true
     },
     "$dé:day_highlight_anchor_from": {
@@ -899,6 +899,13 @@
       "help": "X | Y",
       "default": [0, -8]
     },
+    "$dé:bundle_touch_tooltip_position": {
+      "type": "choice",
+      "label": "Bundle tooltip position on touch mode",
+      "help": "",
+      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "default": "bottom_middle"
+    },
     "$dé:item_tooltip_display_bg_alpha": {
       "type": "number",
       "input": "slider",
@@ -1098,7 +1105,7 @@
       "type": "number_array",
       "count": 3,
       "readonly": false,
-      "label": "Default Text Color of OreUI",
+      "label": "Default Text Colour of OreUI",
       "help": "",
       "default": [0.117, 0.117, 0.121]
     },
@@ -1106,15 +1113,23 @@
       "type": "number_array",
       "count": 3,
       "readonly": false,
-      "label": "Light Text Color of OreUI",
+      "label": "Light Text Colour of OreUI",
       "help": "",
       "default": [1.0, 1.0, 1.0]
+    },
+    "$oreui_background_color": {
+      "type": "number_array",
+      "count": 3,
+      "readonly": false,
+      "label": "OreUI Background Colour",
+      "help": "",
+      "default": [0.782, 0.782, 0.786]
     },
     "$déesse_oreui_light_button_default_text_color": {
       "type": "number_array",
       "count": 3,
       "readonly": false,
-      "label": "Default Light Button Text Color of OreUI",
+      "label": "Default Light Button Text Colour of OreUI",
       "help": "",
       "default": [0.117, 0.117, 0.121]
     },
@@ -1122,7 +1137,7 @@
       "type": "number_array",
       "count": 3,
       "readonly": false,
-      "label": "Light Button Hover Text Color of OreUI",
+      "label": "Light Button Hover Text Colour of OreUI",
       "help": "",
       "default": [0.117, 0.117, 0.121]
     },
@@ -1130,7 +1145,7 @@
       "type": "number_array",
       "count": 3,
       "readonly": false,
-      "label": "Pressed Light Button Text Color of OreUI",
+      "label": "Pressed Light Button Text Colour of OreUI",
       "help": "",
       "default": [0.117, 0.117, 0.121]
     },
@@ -1138,7 +1153,7 @@
       "type": "number_array",
       "count": 3,
       "readonly": false,
-      "label": "Locked Light Button Text Color of OreUI",
+      "label": "Locked Light Button Text Colour of OreUI",
       "help": "",
       "default": [0.3, 0.3, 0.3]
     },
@@ -1146,7 +1161,7 @@
       "type": "number_array",
       "count": 3,
       "readonly": false,
-      "label": "Default Red Button Text Color of OreUI",
+      "label": "Default Red Button Text Colour of OreUI",
       "help": "",
       "default": [1.0, 1.0, 1.0]
     },
@@ -1154,7 +1169,7 @@
       "type": "number_array",
       "count": 3,
       "readonly": false,
-      "label": "Red Button Hover Text Color of OreUI",
+      "label": "Red Button Hover Text Colour of OreUI",
       "help": "",
       "default": [1.0, 1.0, 1.0]
     },
@@ -1162,7 +1177,7 @@
       "type": "number_array",
       "count": 3,
       "readonly": false,
-      "label": "Pressed Red Button Text Color of OreUI",
+      "label": "Pressed Red Button Text Colour of OreUI",
       "help": "",
       "default": [1.0, 1.0, 1.0]
     },
