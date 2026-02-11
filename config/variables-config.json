@@ -1216,7 +1216,7 @@
       "readonly": true,
       "label": "",
       "help": "",
-      "default": "v1.3.0 (112)"
+      "default": "v1.3.1 (120)"
     },
     "$déesse_start_text": {
       "type": "string",
@@ -1224,7 +1224,7 @@
       "readonly": true,
       "label": "",
       "help": "",
-      "default": "Déesse UI v1.3.0"
+      "default": "Déesse UI v1.3.1"
     },
     "_section_debugging": {
       "type": "section",
