@@ -19,10 +19,49 @@
 
       <div class="card">
         <h2>Actions</h2>
-        <button id="downloadBtn" class="primary">Download _global_variables.json</button>
+        <div class="button-group">
+          <button id="downloadBtn" class="primary">Download _global_variables.json</button>
+          <button id="configurePackBtn" class="secondary">Configure Pack</button>
+        </div>
         <div id="status" class="status">No file loaded yet.</div>
       </div>
     </section>
+
+    <!-- Modal for Pack Configuration -->
+    <div id="packModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Pack Configuration</h2>
+        </div>
+        <div class="modal-body">
+          <p class="modal-description">Upload the original Déesse UI pack here to add the new configurations</p>
+          <div id="dropZone" class="drop-zone">
+            <div class="drop-zone-content">
+              <svg viewBox="0 0 24 24" width="48" height="48" fill="currentColor">
+                <path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2zM19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+              </svg>
+              <p>Click or drag .mcpack here</p>
+              <input type="file" id="fileInput" accept=".mcpack,application/octet-stream" hidden />
+            </div>
+          </div>
+          <div id="packStatus" class="status">No file selected.</div>
+        </div>
+        <div class="modal-footer">
+          <button id="uploadPackBtn" class="success-btn" disabled>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="vertical-align: middle; margin-right: 4px;">
+              <path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/>
+            </svg>
+            Upload
+          </button>
+          <button id="cancelPackBtn" class="danger-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="vertical-align: middle; margin-right: 4px;">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>
+            </svg>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
 
     <small>After the download, you can put the _global_variables.json file inside DéesseUIPack/ui/ and replace it if prompted.</small>
 
