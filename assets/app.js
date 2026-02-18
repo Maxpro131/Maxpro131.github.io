@@ -517,4 +517,137 @@ async function init(){
   status.textContent = 'Ready.';
 }
 
+// Add JSZip via CDN for simplicity in static site
+const jszipScript = document.createElement('script');
+jszipScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+document.head.appendChild(jszipScript);
+
+const configurePackBtn = document.getElementById('configurePackBtn');
+const packModal = document.getElementById('packModal');
+const cancelPackBtn = document.getElementById('cancelPackBtn');
+const uploadPackBtn = document.getElementById('uploadPackBtn');
+const dropZone = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const packStatus = document.getElementById('packStatus');
+
+let selectedPackFile = null;
+
+configurePackBtn.addEventListener('click', () => {
+  packModal.classList.add('visible');
+  resetPackModal();
+});
+
+cancelPackBtn.addEventListener('click', () => {
+  packModal.classList.remove('visible');
+});
+
+function resetPackModal() {
+  selectedPackFile = null;
+  uploadPackBtn.disabled = true;
+  packStatus.textContent = 'No file selected.';
+  packStatus.style.color = '#666';
+}
+
+dropZone.addEventListener('click', () => fileInput.click());
+
+dropZone.addEventListener('dragover', (e) => {
+  e.preventDefault();
+  dropZone.classList.add('drag-over');
+});
+
+dropZone.addEventListener('dragleave', () => {
+  dropZone.classList.remove('drag-over');
+});
+
+dropZone.addEventListener('drop', (e) => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) {
+    handleFileSelect(e.dataTransfer.files[0]);
+  }
+});
+
+fileInput.addEventListener('change', (e) => {
+  if (e.target.files.length) {
+    handleFileSelect(e.target.files[0]);
+  }
+});
+
+function handleFileSelect(file) {
+  // Relaxed extension check to help with mobile/iOS issues
+  const ext = file.name.split('.').pop().toLowerCase();
+  // On iOS, .mcpack might be reported as application/octet-stream or have no clear extension in some contexts
+  // We'll allow any file if the user picks it, but hint at .mcpack
+  selectedPackFile = file;
+  packStatus.textContent = `Selected: ${file.name}`;
+  packStatus.style.color = '#00c853';
+  uploadPackBtn.disabled = false;
+}
+
+uploadPackBtn.addEventListener('click', async () => {
+  if (!selectedPackFile) return;
+
+  uploadPackBtn.disabled = true;
+  packStatus.textContent = 'Processing pack...';
+  packStatus.style.color = 'var(--accent)';
+
+  try {
+    const zip = new JSZip();
+    const contents = await selectedPackFile.arrayBuffer();
+    const loadedZip = await zip.loadAsync(contents);
+
+    // Find the main folder containing the ui/ directory
+    // Pattern: <MainFolder>/ui/_global_variables.json
+    let targetPath = null;
+    const files = Object.keys(loadedZip.files);
+
+    // Look for a path ending in ui/_global_variables.json
+    for (const path of files) {
+      if (path.endsWith('ui/_global_variables.json')) {
+        targetPath = path;
+        break;
+      }
+    }
+
+    if (!targetPath) {
+      // Fallback: try to find any 'ui/' directory and create the file if it doesn't exist
+      for (const path of files) {
+        if (path.includes('/ui/') || path.startsWith('ui/')) {
+          const parts = path.split('/ui/');
+          targetPath = parts[0] + (parts[0] ? '/' : '') + 'ui/_global_variables.json';
+          break;
+        }
+      }
+    }
+
+    if (!targetPath) {
+      throw new Error('Could not find ui/ directory in pack.');
+    }
+
+    const updatedJSON = prettyPrintJSON(variables) + '\n';
+    loadedZip.file(targetPath, updatedJSON);
+
+    const blob = await loadedZip.generateAsync({ type: 'blob' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    // Fixed name to avoid duplicates
+    a.download = `PatchedDéesseUI.mcpack`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    packStatus.textContent = 'Pack patched successfully!';
+    packStatus.style.color = '#00c853';
+    setTimeout(() => {
+      packModal.classList.remove('visible');
+    }, 1500);
+
+  } catch (e) {
+    console.error(e);
+    packStatus.textContent = `Error: ${e.message}`;
+    packStatus.style.color = '#ff1744';
+    uploadPackBtn.disabled = false;
+  }
+});
+
 init();
