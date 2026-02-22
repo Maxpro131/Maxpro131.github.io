@@ -368,6 +368,56 @@ small{color:var(--muted)}
   filter: brightness(1.1);
 }
 
+.preview-btn {
+  background: rgba(10, 20, 30, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  margin-left: 4px;
+}
+
+.preview-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.preview-content {
+  max-width: 800px;
+  width: 90%;
+}
+
+.preview-body {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  min-height: 200px;
+}
+
+.preview-body img {
+  max-width: 100%;
+  max-height: 70vh;
+  display: block;
+}
+
+.preview-content .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+}
+
+.preview-content .close-btn {
+  font-size: 2rem;
+}
+
 /* Modal Styling */
 .modal {
   display: none;
