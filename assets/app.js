@@ -1,4 +1,4 @@
-// Editor (safe mode): no file upload, no raw edits.
+ // Editor (safe mode): no file upload, no raw edits.
 // - Loads config from config/variables-config.json
 // - Loads example from examples/_global_variables.example.json (resolved relative to page URL)
 // - Uses only keys present in config.variables (unknown keys ignored)
@@ -20,6 +20,11 @@ const resetBtn = document.getElementById('resetBtn');
 const status = document.getElementById('status');
 const pageTitle = document.getElementById('pageTitle');
 const searchInput = document.getElementById('searchInput');
+const sidebar = document.getElementById('sidebar');
+const sidebarOverlay = document.getElementById('sidebarOverlay');
+const sidebarNav = document.getElementById('sidebarNav');
+const menuBtn = document.getElementById('menuBtn');
+const closeSidebarBtn = document.getElementById('closeSidebar');
 
 let currentSearchTerm = '';
 
@@ -333,6 +338,7 @@ function makeSection(desc){
 
 function renderControlsForVariables(){
   controlsEl.innerHTML = '';
+  sidebarNav.innerHTML = '';
   const vars = config.variables || {};
   const keys = Object.keys(vars);
   if(keys.length === 0){
@@ -344,7 +350,29 @@ function renderControlsForVariables(){
     const desc = vars[k] || {};
     if(desc.type === 'section'){
       if(!currentSearchTerm){
-        controlsEl.appendChild(makeSection(desc));
+        const sectionId = `section-${k}`;
+        const sectionEl = makeSection(desc);
+        sectionEl.id = sectionId;
+        controlsEl.appendChild(sectionEl);
+
+        // Add to sidebar
+        const navItem = document.createElement('a');
+        navItem.className = 'nav-item';
+        navItem.textContent = desc.label || 'Section';
+        navItem.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = document.getElementById(sectionId);
+          if (target) {
+            const topBarHeight = document.querySelector('.top-bar').offsetHeight;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - topBarHeight - 20;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+            toggleSidebar(false);
+          }
+        });
+        sidebarNav.appendChild(navItem);
       }
       return;
     }
@@ -357,6 +385,22 @@ function renderControlsForVariables(){
     controlsEl.textContent = 'No variables match your search.';
   }
 }
+
+function toggleSidebar(open) {
+  if (open) {
+    sidebar.classList.add('open');
+    sidebarOverlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  } else {
+    sidebar.classList.remove('open');
+    sidebarOverlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+}
+
+menuBtn.addEventListener('click', () => toggleSidebar(true));
+closeSidebarBtn.addEventListener('click', () => toggleSidebar(false));
+sidebarOverlay.addEventListener('click', () => toggleSidebar(false));
 
 // Scroll to top functionality
 const scrollToTopBtn = document.getElementById('scrollToTop');
@@ -627,7 +671,7 @@ uploadPackBtn.addEventListener('click', async () => {
     const updatedJSON = prettyPrintJSON(variables) + '\n';
     loadedZip.file(targetPath, updatedJSON);
 
-    const blob = await loadedZip.generateAsync({ type: 'blob' });
+    const blob = await loadedZip.generateAsync({ type: 'blob', mimeType: 'application/octet-stream' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
     // Fixed name to avoid duplicates
