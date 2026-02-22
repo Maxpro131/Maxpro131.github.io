@@ -1,4 +1,4 @@
- // Editor (safe mode): no file upload, no raw edits.
+// Editor (safe mode): no file upload, no raw edits.
 // - Loads config from config/variables-config.json
 // - Loads example from examples/_global_variables.example.json (resolved relative to page URL)
 // - Uses only keys present in config.variables (unknown keys ignored)
@@ -25,6 +25,10 @@ const sidebarOverlay = document.getElementById('sidebarOverlay');
 const sidebarNav = document.getElementById('sidebarNav');
 const menuBtn = document.getElementById('menuBtn');
 const closeSidebarBtn = document.getElementById('closeSidebar');
+const previewModal = document.getElementById('previewModal');
+const previewImage = document.getElementById('previewImage');
+const previewTitle = document.getElementById('previewTitle');
+const closePreviewBtn = document.getElementById('closePreview');
 
 let currentSearchTerm = '';
 
@@ -304,6 +308,24 @@ function makeControl(key, value, desc){
     right.appendChild(badge);
   }
 
+  if(desc && desc.previewURL) {
+    const previewBtn = document.createElement('button');
+    previewBtn.className = 'preview-btn';
+    previewBtn.title = 'Show Preview';
+    previewBtn.innerHTML = `
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+    `;
+    previewBtn.addEventListener('click', () => {
+      previewTitle.textContent = desc.label || key;
+      previewImage.src = desc.previewURL;
+      previewModal.classList.add('visible');
+    });
+    right.appendChild(previewBtn);
+  }
+
   // Initial modified status
   updateModifiedStatus(key, value, row);
 
@@ -401,6 +423,18 @@ function toggleSidebar(open) {
 menuBtn.addEventListener('click', () => toggleSidebar(true));
 closeSidebarBtn.addEventListener('click', () => toggleSidebar(false));
 sidebarOverlay.addEventListener('click', () => toggleSidebar(false));
+
+closePreviewBtn.addEventListener('click', () => {
+  previewModal.classList.remove('visible');
+  previewImage.src = '';
+});
+
+previewModal.addEventListener('click', (e) => {
+  if (e.target === previewModal) {
+    previewModal.classList.remove('visible');
+    previewImage.src = '';
+  }
+});
 
 // Scroll to top functionality
 const scrollToTopBtn = document.getElementById('scrollToTop');
