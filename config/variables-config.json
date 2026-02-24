@@ -414,7 +414,8 @@
       "readonly": false,
       "label": "Allow the chunk map feature",
       "help": "Touch control & full features only",
-      "default": true
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/11.jpg"
     },
     "$dé:map_show_coordinates_text": {
       "type": "boolean",
@@ -422,7 +423,8 @@
       "readonly": false,
       "label": "Show coordinates in chunk map",
       "help": "",
-      "default": true
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/12.jpg"
     },
     "$dé:map_show_direction_text": {
       "type": "boolean",
@@ -430,7 +432,8 @@
       "readonly": false,
       "label": "Show directions in chunk map",
       "help": "",
-      "default": true
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/7.gif"
     },
     "$dé:map_chunk_border_alpha": {
       "type": "number",
@@ -467,8 +470,9 @@
       "input": "toggle",
       "readonly": false,
       "label": "View Around",
-      "help": "If viewing around should be enabled by default",
-      "default": true
+      "help": "Allow viewing around feature",
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/8.gif"
     },
     "$dé:map_background": {
       "type": "boolean",
@@ -556,7 +560,7 @@
       "help": "",
       "default": 0.8
     },
-    "_section_whatever": {
+    "_section_bo": {
       "type": "section",
       "label": "Brightness Overlay",
       "help": "(Night Vision Buttons)"
@@ -629,7 +633,8 @@
       "readonly": false,
       "label": "Show Day Highlight",
       "help": "Day Highlight shows you your played days on special ones like 100th with a nice little pop-up",
-      "default": true
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/13.jpg"
     },
     "$dé:day_highlight_anchor_from": {
       "type": "choice",
