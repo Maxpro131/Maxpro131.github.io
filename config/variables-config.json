@@ -54,9 +54,10 @@
       "type": "boolean",
       "input": "toggle",
       "readonly": false,
-      "label": "",
-      "help": "",
-      "default": false
+      "label": "Shows the item stack in the middle of the screen",
+      "help": "Also shows a new toggle in HUD menu",
+      "default": false,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/9.jpg"
     },
     "_section_chat_general": {
       "type": "section",
@@ -205,7 +206,8 @@
       "label": "Utilities HUD position",
       "help": "What corner the compass, clock and durability viewer should be shown at",
       "choices": ["bottom_left", "bottom_right", "top_left", "top_right"],
-      "default": "bottom_left"
+      "default": "bottom_left",
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/6.gif"
     },
     "$dé:utilities_hud_offset": {
       "type": "number_array",
@@ -312,7 +314,7 @@
       "input": "toggle",
       "readonly": false,
       "label": "Center Item Stack",
-      "help": "",
+      "help": "If Center Item Stack should be enabled by default. Enable the feature in General first",
       "default": false
     },
     "$dé:hud_menu-player_list": {
@@ -321,7 +323,8 @@
       "readonly": false,
       "label": "Player List",
       "help": "Toggle this off to disable the player list feature",
-      "default": true
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/10.jpg"
     },
     "_section_f3": {
       "type": "section",
