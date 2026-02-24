@@ -211,8 +211,8 @@
   "$id_déesse_ui_global_variables_loaded": true,
   
   "$déesse_ui_pack_name": "Déesse UI Pack",
-  "$déesse_ui_pack_version": "v1.3.0 (112)",
-  "$déesse_start_text": "Déesse UI v1.3.0",
+  "$déesse_ui_pack_version": "v1.3.1 (120)",
+  "$déesse_start_text": "Déesse UI v1.3.1",
   
 //- for debugging purposes
   "$deesse_ui_debug_mode": false,
