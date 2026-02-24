@@ -48,7 +48,7 @@
       "label": "Durability low warning",
       "help": "",
       "default": true,
-      "previewUR": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/2.jpg"
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/2.jpg"
     },
     "$dé:enable_center_item_stack": {
       "type": "boolean",
