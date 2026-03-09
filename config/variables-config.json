@@ -735,8 +735,9 @@
       "type": "choice",
       "label": "Inventory HUD Position",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
-      "default": "bottom_right"
+      "choices": ["bottom_left", "bottom_right", "top_left", "top_right"],
+      "default": "bottom_right",
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/9.gif"
     },
     "$dé:inventory_hud_offset": {
       "type": "number_array",
@@ -802,7 +803,8 @@
       "label": "Déesse Button Size",
       "help": "Touch control only",
       "choices": ["default", "small", "medium", "big"],
-      "default": "default"
+      "default": "default",
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/10.gif"
     },
     "$dé:enable_gui_button_customization": {
       "type": "boolean",
@@ -864,7 +866,8 @@
       "readonly": false,
       "label": "Default Chat Opacity",
       "help": "Disable this setting to make the chat background transparent",
-      "default": true
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/11.gif"
     },
     "$dé:switch_text_box": {
       "type": "boolean",
@@ -872,7 +875,8 @@
       "readonly": false,
       "label": "If \"Custom Text Box\" feature should be enabled by default",
       "help": "Makes messages not vanish from text box after sending them",
-      "default": false
+      "default": false,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/12.gif"
     },
     "$dé:show_preview_chat": {
       "type": "boolean",
@@ -880,7 +884,8 @@
       "readonly": false,
       "label": "Shows a preview of the message you're about to send above the text box",
       "help": "Useful for testing § formatting before sending",
-      "default": false
+      "default": false,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/14.png"
     },
     "_section_container_screen": {
       "type": "section",
