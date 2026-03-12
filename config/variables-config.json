@@ -898,7 +898,8 @@
       "readonly": false,
       "label": "The animation when moving items in the inventory",
       "help": "",
-      "default": true
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/13.gif"
     },
     "$dé:show_rarity_highlight": {
       "type": "boolean",
@@ -906,7 +907,8 @@
       "readonly": false,
       "label": "rarity outline on items (except common)",
       "help": "",
-      "default": false
+      "default": false,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/15.png"
     },
     "$dé:use_number_bundle_count": {
       "type": "boolean",
@@ -914,7 +916,8 @@
       "readonly": false,
       "label": "Green number on bundle to shown how many items are in there",
       "help": "",
-      "default": true
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/16.png"
     },
     "$dé:bundle_touch_tooltip_offset": {
       "type": "number_array",
@@ -1001,7 +1004,8 @@
       "readonly": false,
       "label": "Allow force spectator feature",
       "help": "",
-      "default": true
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/14.gif"
     },
     "_section_minimap": {
       "type": "section",
@@ -1056,7 +1060,8 @@
       "readonly": false,
       "label": "Shows you what items you get before unlocking them",
       "help": "",
-      "default": true
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/15.gif"
     },
     "_section_item_id_offset": {
       "type": "section",
@@ -1106,7 +1111,8 @@
       "readonly": false,
       "label": "Show Trial Timer in Pause Screen",
       "help": "",
-      "default": false
+      "default": false,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/17.png"
     },
     "_section_start": {
       "type": "section",
@@ -1119,7 +1125,8 @@
       "readonly": false,
       "label": "Show \"Déesse UI has been loaded!\" Toast",
       "help": "",
-      "default": true
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/18.png"
     },
     "_section_oreui": {
       "type": "section",
@@ -1262,7 +1269,8 @@
       "readonly": false,
       "label": "Shows processes in the top right corner",
       "help": "for debugging purposes",
-      "default": false
+      "default": false,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/16.gif"
     },
     "$dés:force_use_hud_menu_desktop": {
       "type": "boolean",
