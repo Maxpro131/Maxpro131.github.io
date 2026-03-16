@@ -339,10 +339,11 @@ function makeControl(key, value, desc){
 function matchesSearch(key, desc, searchTerm){
   if(!searchTerm) return true;
   if(desc && desc.type === 'section') return false;
-  const term = searchTerm.toLowerCase();
-  const keyMatch = key.toLowerCase().includes(term);
-  const labelMatch = desc && desc.label && desc.label.toLowerCase().includes(term);
-  const helpMatch = desc && desc.help && desc.help.toLowerCase().includes(term);
+  const normalize = s => s.toLowerCase().replace(/[_ ]/g, ' ');
+  const term = normalize(searchTerm);
+  const keyMatch = normalize(key).includes(term);
+  const labelMatch = desc && desc.label && normalize(desc.label).includes(term);
+  const helpMatch = desc && desc.help && normalize(desc.help).includes(term);
   return keyMatch || labelMatch || helpMatch;
 }
 
