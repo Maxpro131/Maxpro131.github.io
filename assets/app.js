@@ -321,7 +321,7 @@ function makeControl(key, value, desc){
       </svg>
     `;
     previewBtn.addEventListener('click', () => {
-      const rawTitle = desc.label || (key.length > 20 ? key.slice(0, 20) + '...' : key);
+      const rawTitle = desc.label || (key.length > 18 ? key.slice(0, 18) + '...' : key);
       previewTitle.textContent = rawTitle;
       previewImage.src = desc.previewURL;
       previewModal.classList.add('visible');
