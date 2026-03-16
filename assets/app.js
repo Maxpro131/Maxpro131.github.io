@@ -136,7 +136,8 @@ function makeControl(key, value, desc){
   const row = document.createElement('div');
   row.className = 'control-row';
   const label = document.createElement('label');
-  const keyHtml = key.replace(/^((?:[^_]*_){5})/, '$1<br>');
+  const wrapAt = (desc && desc.wrap_underscore) ? desc.wrap_underscore : 5;
+  const keyHtml = key.replace(new RegExp(`^((?:[^_]*_){${wrapAt}})`), '$1<br>');
   label.innerHTML = `<span class="key">${keyHtml}</span><div class="help">${desc && desc.label ? desc.label : ''}</div>`;
   if(desc && desc.help) label.innerHTML += `<div class="help">${desc.help}</div>`;
   row.appendChild(label);
@@ -320,7 +321,8 @@ function makeControl(key, value, desc){
       </svg>
     `;
     previewBtn.addEventListener('click', () => {
-      previewTitle.textContent = desc.label || key;
+      const rawTitle = desc.label || (key.length > 17 ? key.slice(0, 17) + '...' : key);
+      previewTitle.textContent = rawTitle;
       previewImage.src = desc.previewURL;
       previewModal.classList.add('visible');
     });
