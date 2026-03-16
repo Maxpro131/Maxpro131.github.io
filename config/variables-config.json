@@ -377,7 +377,8 @@
       "readonly": false,
       "label": "Show chunk borders in F3",
       "help": "",
-      "default": true
+      "default": true,
+      "wrap_underscore": 3
     },
     "$dé:debugScreen_overworld_to_nether_position": {
       "type": "boolean",
@@ -385,7 +386,8 @@
       "readonly": false,
       "label": "Show overworld → nether coordinates in F3",
       "help": "",
-      "default": true
+      "default": true,
+      "wrap_underscore": 3
     },
     "$dé:debugScreen_nether_to_overworld_position": {
       "type": "boolean",
@@ -393,7 +395,8 @@
       "readonly": false,
       "label": "Show nether → overworld coordinates in F3",
       "help": "",
-      "default": true
+      "default": true,
+      "wrap_underscore": 3
     },
     "$dé:debugScreen_moon_phases": {
       "type": "boolean",
