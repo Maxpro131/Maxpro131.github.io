@@ -136,7 +136,8 @@ function makeControl(key, value, desc){
   const row = document.createElement('div');
   row.className = 'control-row';
   const label = document.createElement('label');
-  label.innerHTML = `<span class="key">${key}</span><div class="help">${desc && desc.label ? desc.label : ''}</div>`;
+  const keyHtml = key.replace(/^((?:[^_]*_){5})/, '$1<br>');
+  label.innerHTML = `<span class="key">${keyHtml}</span><div class="help">${desc && desc.label ? desc.label : ''}</div>`;
   if(desc && desc.help) label.innerHTML += `<div class="help">${desc.help}</div>`;
   row.appendChild(label);
 
