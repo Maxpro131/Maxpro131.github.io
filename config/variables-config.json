@@ -11,7 +11,7 @@
       "readonly": true,
       "label": "Config version",
       "help": "",
-      "default": "3"
+      "default": "4"
     },
     "$dé:show_inventory_full_notification": {
       "type": "boolean",
@@ -58,6 +58,22 @@
       "help": "Also shows a new toggle in HUD menu",
       "default": false,
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/9.jpg"
+    },
+    "dé:use_one_line_tooltip_text": {
+    "type": "boolean",
+    "input": "toogle",
+    "readonly": false,
+    "label": "",
+    "help": "",
+    "default": true
+    },
+    "dé:show_open_menu_tips_chat": {
+    "type": "boolean",
+    "input": "toogle",
+    "readonly": false,
+    "label": "",
+    "help": "",
+    "default": true
     },
     "_section_chat_general": {
       "type": "section",
@@ -325,6 +341,14 @@
       "help": "Toggle this off to disable the player list feature",
       "default": true,
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/10.jpg"
+    },
+    "dé:hud_menu_item_information": {
+    "type": "boolean",
+    "input": "toogle",
+    "readonly": false,
+    "label": "",
+    "help": "",
+    "default": true
     },
     "_section_f3": {
       "type": "section",
@@ -892,6 +916,14 @@
       "label": "Container Screen",
       "help": ""
     },
+    "dé:use_background_close": {
+    "type": "boolean",
+    "input": "toogle",
+    "readonly": false,
+    "label": "",
+    "help": "",
+    "default": false
+    },
     "$dé:show_flying_item_renderer": {
       "type": "boolean",
       "input": "toggle",
@@ -1248,7 +1280,7 @@
       "readonly": true,
       "label": "",
       "help": "",
-      "default": "v1.3.1 (120)"
+      "default": "v1.3.2 (127)"
     },
     "$déesse_start_text": {
       "type": "string",
@@ -1256,7 +1288,7 @@
       "readonly": true,
       "label": "",
       "help": "",
-      "default": "Déesse UI v1.3.1"
+      "default": "Déesse UI v1.3.2"
     },
     "_section_debugging": {
       "type": "section",
