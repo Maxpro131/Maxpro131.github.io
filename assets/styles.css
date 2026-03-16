@@ -92,13 +92,13 @@ body{
   background: var(--bg);
   z-index: 2001;
   transition: left 0.3s ease;
-  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
 }
 
 .sidebar.open {
   left: 0;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .sidebar-header {
@@ -577,6 +577,11 @@ small{color:var(--muted)}
 #scrollToTop:hover {
   transform: translateY(-4px);
   background-color: #b3e0ff;
+}
+
+/* Disable key-name line breaks in mobile landscape (iOS/Android) */
+@media (orientation: landscape) and (max-height: 500px) {
+  .key br { display: none; }
 }
 
 /* Modified variable highlight */
