@@ -16,7 +16,6 @@ const controlsEl = document.getElementById('controls');
 const jsonPreview = document.getElementById('jsonPreview');
 const downloadBtn = document.getElementById('downloadBtn');
 const loadExampleBtn = document.getElementById('loadExample');
-const resetBtn = document.getElementById('resetBtn');
 const status = document.getElementById('status');
 const pageTitle = document.getElementById('pageTitle');
 const searchInput = document.getElementById('searchInput');
@@ -562,7 +561,6 @@ function downloadJSON(){
 
 downloadBtn.addEventListener('click', downloadJSON);
 loadExampleBtn.addEventListener('click', loadExampleAndApply);
-resetBtn.addEventListener('click', resetToDefaults);
 searchInput.addEventListener('input', () => {
   currentSearchTerm = searchInput.value.trim();
   renderControlsForVariables();
