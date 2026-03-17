@@ -321,7 +321,7 @@ function makeControl(key, value, desc){
       </svg>
     `;
     previewBtn.addEventListener('click', () => {
-      const rawTitle = desc.label || (key.length > 18 ? key.slice(0, 18) + '...' : key);
+      const rawTitle = desc.label || (key.length > 20 ? key.slice(0, 20) + '...' : key);
       previewTitle.textContent = rawTitle;
       previewImage.src = desc.previewURL;
       previewModal.classList.add('visible');
@@ -442,19 +442,29 @@ previewModal.addEventListener('click', (e) => {
 
 // Scroll to top functionality
 const scrollToTopBtn = document.getElementById('scrollToTop');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    scrollToTopBtn.classList.add('visible');
-  } else {
-    scrollToTopBtn.classList.remove('visible');
-  }
-});
+const floatingMenuBtn = document.getElementById('floatingMenuBtn');
+const topBar = document.querySelector('.top-bar');
+
+function getScrollY() {
+  return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+}
+
+function onScroll() {
+  const scrollY = getScrollY();
+  const topBarBottom = topBar.offsetTop + topBar.offsetHeight;
+  scrollToTopBtn.classList.toggle('visible', scrollY > 300);
+  floatingMenuBtn.classList.toggle('visible', scrollY >= topBarBottom);
+}
+
+window.addEventListener('scroll', onScroll);
+document.addEventListener('scroll', onScroll);
+
+floatingMenuBtn.addEventListener('click', () => toggleSidebar(true));
 
 scrollToTopBtn.addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
+  document.body.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 // Always return an object with keys from config.variables using source if present,
