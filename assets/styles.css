@@ -71,9 +71,6 @@ main {
   font-size: 1.5rem;
   flex: 1;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .menu-btn {
