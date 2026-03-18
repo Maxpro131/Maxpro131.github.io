@@ -561,8 +561,23 @@ function downloadJSON(){
 
 downloadBtn.addEventListener('click', downloadJSON);
 loadExampleBtn.addEventListener('click', loadExampleAndApply);
+const clearSearchBtn = document.getElementById('clearSearchBtn');
+const sidebarSearchActions = document.querySelector('.sidebar-search-actions');
+
+function updateClearSearchVisibility() {
+  sidebarSearchActions.classList.toggle('visible', currentSearchTerm.length > 0);
+}
+
 searchInput.addEventListener('input', () => {
   currentSearchTerm = searchInput.value.trim();
+  updateClearSearchVisibility();
+  renderControlsForVariables();
+});
+
+clearSearchBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  currentSearchTerm = '';
+  updateClearSearchVisibility();
   renderControlsForVariables();
 });
 
