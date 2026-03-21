@@ -1,11 +1,3 @@
-// Editor (safe mode): no file upload, no raw edits.
-// - Loads config from config/variables-config.json
-// - Loads example from examples/_global_variables.example.json (resolved relative to page URL)
-// - Uses only keys present in config.variables (unknown keys ignored)
-// - Readonly behavior controlled by config.variables[$key].readonly
-// - Supports "choice" input type and persist last user state across reloads (sessionStorage)
-// - Pretty-prints JSON but keeps simple arrays on one line: [0, 1, -0.5]
-
 const CONFIG_URL = new URL('config/variables-config.json', location.href).href;
 const EXAMPLE_URL = new URL('examples/_global_variables.example.json', location.href).href;
 
@@ -502,7 +494,7 @@ async function loadExampleAndApply(){
     saveDefaultsToStorage();
     updatePreview();
     renderControlsForVariables();
-    status.textContent = 'Example loaded.';
+    status.textContent = 'Loaded defaults.';
     console.warn('Example load failed', e);
   }
 }
