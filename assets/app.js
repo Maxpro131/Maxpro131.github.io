@@ -762,11 +762,24 @@ autoPackBtn.addEventListener('click', async () => {
   packStatus.style.color = 'var(--accent)';
 
   try {
-    const response = await fetch('/proxy-pack');
-    if (!response.ok) {
-      const err = await response.json().catch(() => ({}));
-      throw new Error(err.error || `Download failed (HTTP ${response.status})`);
+    const packUrl = config.packDownloadUrl;
+    if (!packUrl) throw new Error('No pack download URL configured.');
+
+    const proxies = [
+      url => 'https://corsproxy.io/?url=' + encodeURIComponent(url),
+      url => 'https://cors.eu.org/' + url,
+      url => 'https://thingproxy.freeboard.io/fetch/' + url,
+    ];
+
+    let response = null;
+    for (let i = 0; i < proxies.length; i++) {
+      packStatus.textContent = `Downloading pack... (attempt ${i + 1}/${proxies.length})`;
+      try {
+        const r = await fetch(proxies[i](packUrl));
+        if (r.ok) { response = r; break; }
+      } catch (_) {}
     }
+    if (!response) throw new Error('All download attempts failed. Try the Upload button instead.');
 
     packStatus.textContent = 'Patching pack...';
     const contents = await response.arrayBuffer();
