@@ -530,11 +530,36 @@ small{color:var(--muted)}
 }
 
 .modal-footer {
-  padding: 24px;
+  padding: 16px 24px;
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 10px;
   background: rgba(0, 0, 0, 0.2);
+}
+
+.modal-footer button {
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.modal-footer button svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .modal-footer {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .success-btn,
+  .auto-btn,
+  .danger-btn {
+    padding: 10px 10px;
+    font-size: 0.85rem;
+  }
 }
 
 .success-btn {
@@ -556,6 +581,30 @@ small{color:var(--muted)}
 }
 
 .success-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.auto-btn {
+  background-color: #0724CB;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.auto-btn:hover:not(:disabled) {
+  background-color: #2148b0;
+  transform: scale(1.05);
+}
+
+.auto-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
