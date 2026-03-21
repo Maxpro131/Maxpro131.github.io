@@ -631,6 +631,7 @@ const configurePackBtn = document.getElementById('configurePackBtn');
 const packModal = document.getElementById('packModal');
 const cancelPackBtn = document.getElementById('cancelPackBtn');
 const uploadPackBtn = document.getElementById('uploadPackBtn');
+const autoPackBtn = document.getElementById('autoPackBtn');
 const dropZone = document.getElementById('dropZone');
 const fileInput = document.getElementById('fileInput');
 const packStatus = document.getElementById('packStatus');
@@ -752,6 +753,73 @@ uploadPackBtn.addEventListener('click', async () => {
     packStatus.textContent = `Error: ${e.message}`;
     packStatus.style.color = '#ff1744';
     uploadPackBtn.disabled = false;
+  }
+});
+
+autoPackBtn.addEventListener('click', async () => {
+  autoPackBtn.disabled = true;
+  packStatus.textContent = 'Downloading pack...';
+  packStatus.style.color = 'var(--accent)';
+
+  try {
+    const response = await fetch('/proxy-pack');
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.error || `Download failed (HTTP ${response.status})`);
+    }
+
+    packStatus.textContent = 'Patching pack...';
+    const contents = await response.arrayBuffer();
+    const zip = new JSZip();
+    const loadedZip = await zip.loadAsync(contents);
+
+    const files = Object.keys(loadedZip.files);
+    let targetPath = null;
+
+    for (const path of files) {
+      if (path.endsWith('ui/_global_variables.json')) {
+        targetPath = path;
+        break;
+      }
+    }
+
+    if (!targetPath) {
+      for (const path of files) {
+        if (path.includes('/ui/') || path.startsWith('ui/')) {
+          const parts = path.split('/ui/');
+          targetPath = parts[0] + (parts[0] ? '/' : '') + 'ui/_global_variables.json';
+          break;
+        }
+      }
+    }
+
+    if (!targetPath) {
+      throw new Error('Could not find ui/ directory in pack.');
+    }
+
+    const updatedJSON = prettyPrintJSON(variables) + '\n';
+    loadedZip.file(targetPath, updatedJSON);
+
+    const blob = await loadedZip.generateAsync({ type: 'blob', mimeType: 'application/octet-stream' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'PatchedDéesseUI.mcpack';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    packStatus.textContent = 'Pack patched successfully!';
+    packStatus.style.color = '#00c853';
+    setTimeout(() => {
+      packModal.classList.remove('visible');
+    }, 1500);
+
+  } catch (e) {
+    console.error(e);
+    packStatus.textContent = `Error: ${e.message}`;
+    packStatus.style.color = '#ff1744';
+  } finally {
+    autoPackBtn.disabled = false;
   }
 });
 
