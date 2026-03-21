@@ -356,6 +356,22 @@ function makeSection(desc){
 function renderControlsForVariables(){
   controlsEl.innerHTML = '';
   sidebarNav.innerHTML = '';
+
+  const liveJsonNavItem = document.createElement('a');
+  liveJsonNavItem.className = 'nav-item nav-item-live-json';
+  liveJsonNavItem.textContent = 'Live JSON';
+  liveJsonNavItem.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.getElementById('jsonPreview');
+    if (target) {
+      const topBarHeight = document.querySelector('.top-bar').offsetHeight;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - topBarHeight - 20;
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+      toggleSidebar(false);
+    }
+  });
+  sidebarNav.appendChild(liveJsonNavItem);
+
   const vars = config.variables || {};
   const keys = Object.keys(vars);
   if(keys.length === 0){
