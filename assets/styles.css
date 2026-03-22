@@ -8,6 +8,39 @@
   --text:#e6eef6;
 }
 
+.noscript-overlay{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:rgba(7,16,36,0.97);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  box-sizing:border-box;
+}
+
+.noscript-box{
+  background:#0b1220;
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;
+  padding:32px;
+  max-width:400px;
+  text-align:center;
+  color:#e6eef6;
+}
+
+.noscript-box h2{
+  margin:0 0 12px 0;
+  font-size:1.4rem;
+}
+
+.noscript-box p{
+  margin:0;
+  color:#9aa4b2;
+  line-height:1.6;
+}
+
 /* Make sure the background always fills the viewport (fixes white gaps on some devices) */
 html,body{
   height:100%;
