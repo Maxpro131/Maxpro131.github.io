@@ -198,6 +198,7 @@ function makeControl(key, value, desc){
 
     const number = document.createElement('input');
     number.type = 'number';
+    number.inputMode = 'decimal';
     number.min = range.min; number.max = range.max; number.step = range.step;
     number.value = range.value;
     number.disabled = readonly;
@@ -236,6 +237,7 @@ function makeControl(key, value, desc){
     for(let i=0;i<count;i++){
       const num = document.createElement('input');
       num.type = 'number';
+      num.inputMode = 'decimal';
       num.step = desc.step ?? 1;
       num.min = desc.min ?? '';
       num.max = desc.max ?? '';
@@ -269,6 +271,7 @@ function makeControl(key, value, desc){
     const input = document.createElement('input');
     const isNumber = desc && desc.type === 'number';
     input.type = isNumber ? 'number' : 'text';
+    if (isNumber) input.inputMode = 'decimal';
     input.value = (typeof value === 'object' && value !== null) ? JSON.stringify(value) : String(value ?? '');
     input.disabled = readonly;
     input.addEventListener('input', () => {
