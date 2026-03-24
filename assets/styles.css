@@ -824,3 +824,28 @@ small{color:var(--muted)}
   background-origin: border-box !important;
   background-clip: padding-box, border-box !important;
 }
+
+/* Desktop-only fixes */
+@media (min-width: 721px) {
+  /* Make the preview modal fill more of the screen */
+  .modal-content.preview-content {
+    max-width: 80vw;
+    width: 80vw;
+  }
+  .preview-body img {
+    width: 100%;
+    height: auto;
+    max-height: 75vh;
+    object-fit: contain;
+  }
+
+  /* Hide ugly native number input spinners */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}
