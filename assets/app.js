@@ -987,4 +987,19 @@ autoPackBtn.addEventListener('click', async () => {
   }
 });
 
+const copyJsonBtn = document.getElementById('copyJsonBtn');
+const copyJsonIcon = document.getElementById('copyJsonIcon');
+const COPY_ICON = `<rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>`;
+const CHECK_ICON = `<polyline points="20 6 9 17 4 12"/>`;
+let copyRevertTimer = null;
+copyJsonBtn.addEventListener('click', () => {
+  navigator.clipboard.writeText(jsonPreview.value).then(() => {
+    clearTimeout(copyRevertTimer);
+    copyJsonIcon.innerHTML = CHECK_ICON;
+    copyRevertTimer = setTimeout(() => {
+      copyJsonIcon.innerHTML = COPY_ICON;
+    }, 1000);
+  });
+});
+
 init();
