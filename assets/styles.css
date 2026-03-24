@@ -312,6 +312,8 @@ input[type="text"], input[type="number"], textarea{
   box-sizing:border-box;
 }
 textarea.json{min-height:320px;width:100%;background:#061423;padding:12px;border-radius:8px;color:#cfe9ff;font-family:monospace}
+.json-wrap{position:relative;width:100%}
+.copy-json-btn{position:absolute;top:8px;right:8px;z-index:1}
 .primary{background:var(--accent);color:white;border:none;padding:10px 14px;border-radius:12px}
 .danger{background:#cc2222;color:white;border:none;padding:10px 14px;border-radius:12px}
 .danger:hover{filter:brightness(1.15)}
