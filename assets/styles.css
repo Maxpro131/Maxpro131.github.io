@@ -319,7 +319,48 @@ button{cursor:pointer}
 .status{margin-top:8px;color:var(--muted)}
 small{color:var(--muted)}
 .key{font-family:monospace;color:#9ad6ff}
-.badge{background:rgba(255,255,255,0.04);padding:6px;border-radius:6px;font-size:12px}
+.badge{background:rgba(255,255,255,0.04);padding:6px;border-radius:6px;font-size:12px;cursor:pointer;user-select:none}
+#readonlyTooltip{
+  display:none;
+  position:fixed;
+  background:#4a4a4a;
+  color:#fff;
+  font-size:12px;
+  line-height:1.4;
+  padding:8px 12px;
+  border-radius:10px;
+  white-space:normal;
+  width:220px;
+  max-width:calc(100vw - 16px);
+  text-align:center;
+  z-index:9999;
+  pointer-events:none;
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+}
+#readonlyTooltip.tt-visible{display:block}
+#readonlyTooltip::after{
+  content:'';
+  position:absolute;
+  border:7px solid transparent;
+}
+#readonlyTooltip.tt-above::after{
+  top:100%;
+  left:var(--arrow-x,50%);
+  transform:translateX(-50%);
+  border-top-color:#4a4a4a;
+}
+#readonlyTooltip.tt-right::after{
+  top:var(--arrow-y,50%);
+  right:100%;
+  transform:translateY(-50%);
+  border-right-color:#4a4a4a;
+}
+#readonlyTooltip.tt-left::after{
+  top:var(--arrow-y,50%);
+  left:100%;
+  transform:translateY(-50%);
+  border-left-color:#4a4a4a;
+}
 .disabled{opacity:0.55}
 
 /* Array inputs: CSS Grid, left-aligned so wrapped rows start at the left */
@@ -472,6 +513,25 @@ small{color:var(--muted)}
   background: rgba(255, 255, 255, 0.05);
   color: var(--text);
   border-color: var(--accent);
+}
+
+.reset-btn {
+  display: none;
+}
+.control-row.modified .reset-btn {
+  display: flex;
+}
+
+.slider-num-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.slider-num-wrap input[type="number"] {
+  width: 52px;
+  min-width: unset;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 .preview-content {
