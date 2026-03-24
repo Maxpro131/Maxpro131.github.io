@@ -136,6 +136,8 @@ function makeControl(key, value, desc){
   const right = document.createElement('div');
   right.className = 'right';
   const readonly = !!(desc && desc.readonly);
+  let resetFn = null;
+  let sliderNumWrap = null;
 
   if(desc && desc.type === 'boolean'){
     const input = document.createElement('input');
@@ -148,6 +150,13 @@ function makeControl(key, value, desc){
       updateModifiedStatus(key, variables[key], row);
     });
     right.appendChild(input);
+    resetFn = () => {
+      const def = defaultFor(desc);
+      variables[key] = Boolean(def);
+      input.checked = Boolean(def);
+      updatePreview();
+      updateModifiedStatus(key, variables[key], row);
+    };
 
   } else if(desc && desc.type === 'choice'){
     // render select dropdown with options
@@ -173,6 +182,13 @@ function makeControl(key, value, desc){
         updateModifiedStatus(key, variables[key], row);
       });
       right.appendChild(fallback);
+      resetFn = () => {
+        const def = defaultFor(desc);
+        variables[key] = def;
+        fallback.value = String(def ?? '');
+        updatePreview();
+        updateModifiedStatus(key, variables[key], row);
+      };
     } else {
       // set initial value (desc.default, provided value, or first choice)
       const initial = (value !== undefined && value !== null && String(value) !== '') ? String(value) :
@@ -185,6 +201,13 @@ function makeControl(key, value, desc){
         updateModifiedStatus(key, variables[key], row);
       });
       right.appendChild(select);
+      resetFn = () => {
+        const def = defaultFor(desc);
+        variables[key] = def;
+        select.value = String(def ?? choices[0]);
+        updatePreview();
+        updateModifiedStatus(key, variables[key], row);
+      };
     }
 
   } else if(desc && desc.type === 'number' && desc.input === 'slider'){
@@ -227,8 +250,19 @@ function makeControl(key, value, desc){
       }
     });
 
+    sliderNumWrap = document.createElement('div');
+    sliderNumWrap.className = 'slider-num-wrap';
+    sliderNumWrap.appendChild(number);
     right.appendChild(range);
-    right.appendChild(number);
+    right.appendChild(sliderNumWrap);
+    resetFn = () => {
+      const def = defaultFor(desc);
+      variables[key] = def;
+      range.value = def;
+      number.value = def;
+      updatePreview();
+      updateModifiedStatus(key, variables[key], row);
+    };
 
   } else if(desc && desc.type === 'number_array'){
     const count = desc.count || (Array.isArray(value) ? value.length : 2);
@@ -266,6 +300,15 @@ function makeControl(key, value, desc){
       container.appendChild(num);
     }
     right.appendChild(container);
+    resetFn = () => {
+      const defArr = defaultFor(desc);
+      variables[key] = Array.isArray(defArr) ? structuredClone(defArr) : Array(count).fill(0);
+      container.querySelectorAll('input').forEach((num, idx) => {
+        num.value = Array.isArray(variables[key]) ? variables[key][idx] : 0;
+      });
+      updatePreview();
+      updateModifiedStatus(key, variables[key], row);
+    };
 
   } else {
     const input = document.createElement('input');
@@ -295,12 +338,29 @@ function makeControl(key, value, desc){
       });
     }
     right.appendChild(input);
+    resetFn = () => {
+      const def = defaultFor(desc);
+      variables[key] = isNumber ? Number(def) : def;
+      input.value = (typeof def === 'object' && def !== null) ? JSON.stringify(def) : String(def ?? '');
+      updatePreview();
+      updateModifiedStatus(key, variables[key], row);
+    };
   }
 
   if(readonly){
     const badge = document.createElement('span');
     badge.className = 'badge';
     badge.textContent = 'readonly';
+    badge.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (badge.classList.contains('tooltip-open')) {
+        dismissTooltips();
+        return;
+      }
+      dismissTooltips();
+      badge.classList.add('tooltip-open');
+      positionTooltip(badge);
+    });
     right.appendChild(badge);
   }
 
@@ -321,6 +381,24 @@ function makeControl(key, value, desc){
       previewModal.classList.add('visible');
     });
     right.appendChild(previewBtn);
+  }
+
+  if(!readonly && resetFn) {
+    const resetBtn = document.createElement('button');
+    resetBtn.className = 'preview-btn reset-btn';
+    resetBtn.title = 'Reset to default';
+    resetBtn.innerHTML = `
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+        <path d="M3 3v5h5"/>
+      </svg>
+    `;
+    resetBtn.addEventListener('click', () => resetFn());
+    if(sliderNumWrap) {
+      sliderNumWrap.appendChild(resetBtn);
+    } else {
+      right.appendChild(resetBtn);
+    }
   }
 
   // Initial modified status
@@ -468,6 +546,68 @@ function onScroll() {
 
 window.addEventListener('scroll', onScroll);
 document.addEventListener('scroll', onScroll);
+
+const readonlyTooltip = document.createElement('span');
+readonlyTooltip.id = 'readonlyTooltip';
+readonlyTooltip.textContent = 'This variable is important for compatibility and changing it may cause unexpected behavior.';
+document.body.appendChild(readonlyTooltip);
+
+function positionTooltip(badge) {
+  const margin = 8;
+  const gap = 10;
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const br = badge.getBoundingClientRect();
+  const tw = Math.min(220, vw - margin * 2);
+
+  readonlyTooltip.style.width = tw + 'px';
+  readonlyTooltip.classList.remove('tt-above', 'tt-right', 'tt-left', 'tt-visible');
+  readonlyTooltip.classList.add('tt-visible');
+
+  const spaceRight = vw - br.right - gap - margin;
+  const spaceLeft = br.left - gap - margin;
+  const spaceAbove = br.top - gap - margin;
+
+  if (spaceRight >= tw) {
+    readonlyTooltip.classList.add('tt-right');
+    readonlyTooltip.style.left = (br.right + gap) + 'px';
+    requestAnimationFrame(() => {
+      const th = readonlyTooltip.offsetHeight;
+      const top = Math.max(margin, Math.min(vh - th - margin, br.top + br.height / 2 - th / 2));
+      readonlyTooltip.style.top = top + 'px';
+      const arrowY = (br.top + br.height / 2 - top);
+      readonlyTooltip.style.setProperty('--arrow-y', arrowY + 'px');
+    });
+  } else if (spaceLeft >= tw) {
+    readonlyTooltip.classList.add('tt-left');
+    readonlyTooltip.style.left = (br.left - tw - gap) + 'px';
+    requestAnimationFrame(() => {
+      const th = readonlyTooltip.offsetHeight;
+      const top = Math.max(margin, Math.min(vh - th - margin, br.top + br.height / 2 - th / 2));
+      readonlyTooltip.style.top = top + 'px';
+      const arrowY = (br.top + br.height / 2 - top);
+      readonlyTooltip.style.setProperty('--arrow-y', arrowY + 'px');
+    });
+  } else {
+    readonlyTooltip.classList.add('tt-above');
+    const left = Math.max(margin, Math.min(vw - tw - margin, br.left + br.width / 2 - tw / 2));
+    readonlyTooltip.style.left = left + 'px';
+    requestAnimationFrame(() => {
+      const th = readonlyTooltip.offsetHeight;
+      const top = spaceAbove >= 0 ? br.top - th - gap : br.bottom + gap;
+      readonlyTooltip.style.top = Math.max(margin, top) + 'px';
+      const arrowX = (br.left + br.width / 2 - left);
+      readonlyTooltip.style.setProperty('--arrow-x', arrowX + 'px');
+    });
+  }
+}
+
+function dismissTooltips() {
+  document.querySelectorAll('.badge.tooltip-open').forEach(b => b.classList.remove('tooltip-open'));
+  readonlyTooltip.classList.remove('tt-visible', 'tt-above', 'tt-right', 'tt-left');
+}
+document.addEventListener('click', dismissTooltips);
+window.addEventListener('scroll', dismissTooltips, { passive: true });
 
 floatingMenuBtn.addEventListener('click', () => toggleSidebar(true));
 
