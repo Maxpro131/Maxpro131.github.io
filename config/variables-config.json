@@ -4,7 +4,8 @@
     "_section_general": {
       "type": "section",
       "label": "General Settings",
-      "help": "Random stuff :)"
+      "help": "Random stuff :)",
+      "link_name": "general"
     },
     "$déesse_ui_global_variables_version": {
       "type": "number",
@@ -61,25 +62,26 @@
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/9.jpg"
     },
     "dé:use_one_line_tooltip_text": {
-    "type": "boolean",
-    "input": "toogle",
-    "readonly": false,
-    "label": "",
-    "help": "",
-    "default": true
+      "type": "boolean",
+      "input": "toogle",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": true
     },
     "dé:show_open_menu_tips_chat": {
-    "type": "boolean",
-    "input": "toogle",
-    "readonly": false,
-    "label": "",
-    "help": "",
-    "default": true
+      "type": "boolean",
+      "input": "toogle",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": true
     },
     "_section_chat_general": {
       "type": "section",
       "label": "General Chat Settings",
-      "help": ""
+      "help": "",
+      "link_name": "chat-general"
     },
     "$dé:use_bottom_chat": {
       "type": "boolean",
@@ -113,12 +115,13 @@
     "_section_player_list": {
       "type": "section",
       "label": "Player List",
-      "help": ""
+      "help": "",
+      "link_name": "player-list"
     },
     "$dé:player_list_header_bg_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 3,
       "step": 0.01,
       "readonly": false,
@@ -132,18 +135,22 @@
       "readonly": false,
       "label": "Player list header background color",
       "help": "",
-      "default": [0.0, 0.0, 0.0]
+      "default": [
+        0,
+        0,
+        0
+      ]
     },
     "$dé:player_list_bg_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 3,
       "step": 0.01,
       "readonly": false,
       "label": "Player List Background Transparency",
       "help": "",
-      "default": 0.0
+      "default": 0
     },
     "$dé:player_list_bg_color": {
       "type": "number_array",
@@ -151,12 +158,16 @@
       "readonly": false,
       "label": "Player list background color",
       "help": "",
-      "default": [0.0, 0.0, 0.0]
+      "default": [
+        0,
+        0,
+        0
+      ]
     },
     "$dé:player_list_item_bg_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 3,
       "step": 0.01,
       "readonly": false,
@@ -170,12 +181,16 @@
       "readonly": false,
       "label": "",
       "help": "",
-      "default": [0.0, 0.0, 0.0]
+      "default": [
+        0,
+        0,
+        0
+      ]
     },
     "$dé:scoreboard_list_item_bg_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 3,
       "step": 0.01,
       "readonly": false,
@@ -189,12 +204,17 @@
       "readonly": false,
       "label": "",
       "help": "",
-      "default": [0.0, 0.0, 0.0]
+      "default": [
+        0,
+        0,
+        0
+      ]
     },
     "_section_nv": {
       "type": "section",
       "label": "Night Vision",
-      "help": ""
+      "help": "",
+      "link_name": "nv"
     },
     "$dé:white_renderer_color": {
       "type": "number_array",
@@ -202,7 +222,12 @@
       "readonly": false,
       "label": "Night vision overlay color",
       "help": "Red, Green, Blue, Alpha",
-      "default": [1.0, 1.0, 0.9881, 1.0]
+      "default": [
+        1,
+        1,
+        0.9881,
+        1
+      ]
     },
     "$dé:always_use_outside_button": {
       "type": "boolean",
@@ -216,13 +241,19 @@
     "_section_utilities_hud": {
       "type": "section",
       "label": "Utilities HUD Settings",
-      "help": ""
+      "help": "",
+      "link_name": "utilities-hud"
     },
     "$dé:utilities_hud_position": {
       "type": "choice",
       "label": "Utilities HUD position",
       "help": "What corner the compass, clock and durability viewer should be shown at",
-      "choices": ["bottom_left", "bottom_right", "top_left", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_right",
+        "top_left",
+        "top_right"
+      ],
       "default": "bottom_left",
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/6.gif"
     },
@@ -232,12 +263,16 @@
       "readonly": false,
       "label": "Offset of the Utilities HUD",
       "help": "X | Y",
-      "default": [0, 0]
+      "default": [
+        0,
+        0
+      ]
     },
     "_section_hud_menu": {
       "type": "section",
       "label": "HUD Menu Settings",
-      "help": ""
+      "help": "",
+      "link_name": "hud-menu"
     },
     "$dé:hud_menu-debug_screen": {
       "type": "boolean",
@@ -344,17 +379,18 @@
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/10.jpg"
     },
     "dé:hud_menu_item_information": {
-    "type": "boolean",
-    "input": "toogle",
-    "readonly": false,
-    "label": "",
-    "help": "",
-    "default": true
+      "type": "boolean",
+      "input": "toogle",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": true
     },
     "_section_f3": {
       "type": "section",
       "label": "Debug Menu Settings",
-      "help": "Settings of the F3 menu"
+      "help": "Settings of the F3 menu",
+      "link_name": "f3"
     },
     "$dé:debugScreen_minecraft_version": {
       "type": "boolean",
@@ -434,7 +470,8 @@
     "_section_chunk_map": {
       "type": "section",
       "label": "Chunk Map",
-      "help": ""
+      "help": "",
+      "link_name": "chunkmap"
     },
     "$dé:enable_chunk_map": {
       "type": "boolean",
@@ -466,7 +503,7 @@
     "$dé:map_chunk_border_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 3,
       "step": 0.01,
       "readonly": false,
@@ -477,7 +514,7 @@
     "$dé:map_background_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 3,
       "step": 0.01,
       "readonly": false,
@@ -513,13 +550,24 @@
     "_section_hotbar_cycler_right": {
       "type": "section",
       "label": "Hotbar cycler →",
-      "help": ""
+      "help": "",
+      "link_name": "hotbar-cycler-right"
     },
     "$dé:hotbar_cycler_right_position": {
       "type": "choice",
       "label": "Hotbar Cycler Right Position",
       "help": "Touch control only",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "bottom_middle"
     },
     "$dé:hotbar_cycler_right_offset": {
@@ -528,7 +576,10 @@
       "readonly": false,
       "label": "Offset of the right hotbar cycler",
       "help": "X | Y",
-      "default": [110, -43]
+      "default": [
+        110,
+        -43
+      ]
     },
     "$dé:hotbar_cycler_right_size": {
       "type": "number_array",
@@ -536,12 +587,15 @@
       "readonly": false,
       "label": "Size of the right hotbar cycler",
       "help": "",
-      "default": [24, 24]
+      "default": [
+        24,
+        24
+      ]
     },
     "$dé:hotbar_cycler_right_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 5,
       "step": 0.01,
       "readonly": false,
@@ -552,13 +606,24 @@
     "_section_hotbar_cycler_left": {
       "type": "section",
       "label": "Hotbar cycler ←",
-      "help": ""
+      "help": "",
+      "link_name": "hotbar-cycler-left"
     },
     "$dé:hotbar_cycler_left_position": {
       "type": "choice",
       "label": "Hotbar Cycler Left Position",
       "help": "Touch control only",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "bottom_middle"
     },
     "$dé:hotbar_cycler_left_offset": {
@@ -567,7 +632,10 @@
       "readonly": false,
       "label": "Offset of the left hotbar cycler",
       "help": "X | Y",
-      "default": [82, -43]
+      "default": [
+        82,
+        -43
+      ]
     },
     "$dé:hotbar_cycler_left_size": {
       "type": "number_array",
@@ -575,12 +643,15 @@
       "readonly": false,
       "label": "Size of the left hotbar cycler",
       "help": "",
-      "default": [24, 24]
+      "default": [
+        24,
+        24
+      ]
     },
     "$dé:hotbar_cycler_left_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 5,
       "step": 0.01,
       "readonly": false,
@@ -591,12 +662,13 @@
     "_section_bo": {
       "type": "section",
       "label": "Brightness Overlay",
-      "help": "(Night Vision Buttons)"
+      "help": "(Night Vision Buttons)",
+      "link_name": "bo"
     },
     "$dé:BO_button_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 5,
       "step": 0.01,
       "readonly": false,
@@ -608,16 +680,29 @@
       "type": "choice",
       "label": "Decrease Brightness Button Position",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "bottom_middle"
     },
     "$dé:BO_decrease_offset": {
-    "type": "number_array",
+      "type": "number_array",
       "count": 2,
       "readonly": false,
       "label": "Offset of the decrease brightness button",
       "help": "X | Y",
-      "default": [115, -2]
+      "default": [
+        115,
+        -2
+      ]
     },
     "$dé:BO_decrease_size": {
       "type": "number_array",
@@ -625,13 +710,26 @@
       "readonly": false,
       "label": "Size of the decrease brightness button",
       "help": "",
-      "default": [18, 18]
+      "default": [
+        18,
+        18
+      ]
     },
     "$dé:BO_increase_position": {
       "type": "choice",
       "label": "Increase Brightness Button Position",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "bottom_middle"
     },
     "$dé:BO_increase_offset": {
@@ -640,7 +738,10 @@
       "readonly": false,
       "label": "Offset of the increase brightness button",
       "help": "X | Y",
-      "default": [115, -23.5]
+      "default": [
+        115,
+        -23.5
+      ]
     },
     "$dé:BO_increase_size": {
       "type": "number_array",
@@ -648,12 +749,16 @@
       "readonly": false,
       "label": "Size of the increase brightness button",
       "help": "",
-      "default": [18, 18]
+      "default": [
+        18,
+        18
+      ]
     },
     "_section_day_highlight": {
       "type": "section",
       "label": "Day Highlight",
-      "help": ""
+      "help": "",
+      "link_name": "day-highlight"
     },
     "$dé:show_day_highlight": {
       "type": "boolean",
@@ -668,14 +773,34 @@
       "type": "choice",
       "label": "",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "top_middle"
     },
     "$dé:day_highlight_anchor_to": {
       "type": "choice",
       "label": "",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "top_middle"
     },
     "$dé:day_highlight_offset": {
@@ -684,12 +809,15 @@
       "readonly": false,
       "label": "Day Highlight Offset",
       "help": "X | Y",
-      "default": [0, 24]
+      "default": [
+        0,
+        24
+      ]
     },
     "$dé:day_highlight_duration": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 20,
       "step": 0.5,
       "readonly": false,
@@ -700,7 +828,8 @@
     "_section_chunk_viewer": {
       "type": "section",
       "label": "Chunk Viewer",
-      "help": ""
+      "help": "",
+      "link_name": "chunk-viewer"
     },
     "$dé:show_chunk_label": {
       "type": "boolean",
@@ -714,14 +843,34 @@
       "type": "choice",
       "label": "",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "top_right"
     },
     "$dé:chunk_viewer_anchor_to": {
       "type": "choice",
       "label": "",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "top_right"
     },
     "$dé:chunk_viewer_offset": {
@@ -730,20 +879,43 @@
       "readonly": false,
       "label": "Chunk Viewer Offset",
       "help": "X | Y",
-      "default": [-4, 4]
+      "default": [
+        -4,
+        4
+      ]
     },
     "$dé:chunk_height_meter_anchor_from": {
       "type": "choice",
       "label": "",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "top_right"
     },
     "$dé:chunk_height_meter_anchor_to": {
       "type": "choice",
       "label": "",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "top_right"
     },
     "$dé:chunk_height_meter_offset": {
@@ -752,18 +924,27 @@
       "readonly": false,
       "label": "Chunk Height Meter Offset",
       "help": "X | Y",
-      "default": [-78, 6]
+      "default": [
+        -78,
+        6
+      ]
     },
     "_section_inv_hud": {
       "type": "section",
       "label": "Inventory HUD",
-      "help": ""
+      "help": "",
+      "link_name": "inventory-hud"
     },
     "$dé:inventory_hud_position": {
       "type": "choice",
       "label": "Inventory HUD Position",
       "help": "",
-      "choices": ["bottom_left", "bottom_right", "top_left", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_right",
+        "top_left",
+        "top_right"
+      ],
       "default": "bottom_right",
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/9.gif"
     },
@@ -773,7 +954,10 @@
       "readonly": false,
       "label": "Inventory HUD Offset",
       "help": "X | Y",
-      "default": [-1, -1]
+      "default": [
+        -1,
+        -1
+      ]
     },
     "$dé:use_highlight_slot": {
       "type": "boolean",
@@ -789,12 +973,16 @@
       "readonly": false,
       "label": "Highlighted Slot Color",
       "help": "Red, Green, Blue",
-      "default": [0, 1, 0]
+      "default": [
+        0,
+        1,
+        0
+      ]
     },
     "$dé:highlight_slot_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 3,
       "step": 0.01,
       "readonly": false,
@@ -808,12 +996,16 @@
       "readonly": false,
       "label": "Inventory HUD Slot Color",
       "help": "Red, Green, Blue",
-      "default": [0, 0, 0]
+      "default": [
+        0,
+        0,
+        0
+      ]
     },
     "$dé:inventory_slot_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 3,
       "step": 0.01,
       "readonly": false,
@@ -824,13 +1016,19 @@
     "_section_déesse_button": {
       "type": "section",
       "label": "Déesse Button",
-      "help": ""
+      "help": "",
+      "link_name": "deesse-button"
     },
     "$dé:gui_button_option_size": {
       "type": "choice",
       "label": "Déesse Button Size",
       "help": "Touch control only",
-      "choices": ["default", "small", "medium", "big"],
+      "choices": [
+        "default",
+        "small",
+        "medium",
+        "big"
+      ],
       "default": "default",
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/10.gif"
     },
@@ -848,20 +1046,43 @@
       "readonly": false,
       "label": "Custom Déesse Button Size",
       "help": "X | Y ; has priority over $dé:gui_button_option_size",
-      "default": [18, 18]
+      "default": [
+        18,
+        18
+      ]
     },
     "$dé:gui_button_anchor_from": {
       "type": "choice",
       "label": "",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "top_middle"
     },
     "$dé:gui_button_anchor_to": {
       "type": "choice",
       "label": "",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "top_right"
     },
     "$dé:gui_button_offset": {
@@ -870,12 +1091,15 @@
       "readonly": false,
       "label": "Custom Déesse Button Offset",
       "help": "X | Y",
-      "default": [-38.5, 1]
+      "default": [
+        -38.5,
+        1
+      ]
     },
     "$dé:gui_button_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 3,
       "step": 0.01,
       "readonly": false,
@@ -886,10 +1110,11 @@
     "_section_déesse_chat": {
       "type": "section",
       "label": "Déesse Chat Settings",
-      "help": ""
+      "help": "",
+      "link_name": "deesse-chat"
     },
     "$dé:show_background_chat": {
-    "type": "boolean",
+      "type": "boolean",
       "input": "toggle",
       "readonly": false,
       "label": "Default Chat Opacity",
@@ -918,15 +1143,16 @@
     "_section_container_screen": {
       "type": "section",
       "label": "Container Screen",
-      "help": ""
+      "help": "",
+      "link_name": "container-screen"
     },
     "dé:use_background_close": {
-    "type": "boolean",
-    "input": "toogle",
-    "readonly": false,
-    "label": "",
-    "help": "",
-    "default": false
+      "type": "boolean",
+      "input": "toogle",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": false
     },
     "$dé:show_flying_item_renderer": {
       "type": "boolean",
@@ -961,19 +1187,32 @@
       "readonly": false,
       "label": "Custom Bundle Tooltip Offset",
       "help": "X | Y",
-      "default": [0, -8]
+      "default": [
+        0,
+        -8
+      ]
     },
     "$dé:bundle_touch_tooltip_position": {
       "type": "choice",
       "label": "Bundle tooltip position on touch mode",
       "help": "",
-      "choices": ["bottom_left", "bottom_middle", "bottom_right", "middle_left", "middle_middle", "middle_right", "top_left", "top_middle", "top_right"],
+      "choices": [
+        "bottom_left",
+        "bottom_middle",
+        "bottom_right",
+        "middle_left",
+        "middle_middle",
+        "middle_right",
+        "top_left",
+        "top_middle",
+        "top_right"
+      ],
       "default": "bottom_middle"
     },
     "$dé:item_tooltip_display_bg_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 5,
       "step": 0.01,
       "readonly": false,
@@ -984,7 +1223,8 @@
     "_section_qc": {
       "type": "section",
       "label": "Quick Container",
-      "help": ""
+      "help": "",
+      "link_name": "quick-container"
     },
     "$dé:instant_button_click_exit": {
       "type": "boolean",
@@ -1032,7 +1272,8 @@
     "_section_settings_screen": {
       "type": "section",
       "label": "Settings Screen",
-      "help": ""
+      "help": "",
+      "link_name": "settings-screen"
     },
     "$dé:enable_force_spectator": {
       "type": "boolean",
@@ -1046,7 +1287,8 @@
     "_section_minimap": {
       "type": "section",
       "label": "Minimap Renderer",
-      "help": ""
+      "help": "",
+      "link_name": "minimap"
     },
     "$dé:include_entities": {
       "type": "boolean",
@@ -1062,7 +1304,11 @@
       "readonly": false,
       "label": "Rendered Area",
       "help": "Bottom Left Corner",
-      "default": [-128, -60, -128]
+      "default": [
+        -128,
+        -60,
+        -128
+      ]
     },
     "$dé:top_right_corner": {
       "type": "number_array",
@@ -1070,12 +1316,17 @@
       "readonly": false,
       "label": "Rendered Area",
       "help": "Top Right Corner",
-      "default": [128, 316, 128]
+      "default": [
+        128,
+        316,
+        128
+      ]
     },
     "_section_other": {
       "type": "section",
       "label": "Other Stuff",
-      "help": ""
+      "help": "",
+      "link_name": "other"
     },
     "$dé:force_render_below": {
       "type": "boolean",
@@ -1088,7 +1339,8 @@
     "_section_trade": {
       "type": "section",
       "label": "Trade Screen",
-      "help": ""
+      "help": "",
+      "link_name": "trade"
     },
     "$dé:enable_trade_unlocker": {
       "type": "boolean",
@@ -1102,7 +1354,8 @@
     "_section_item_id_offset": {
       "type": "section",
       "label": "Item ID Offset",
-      "help": ""
+      "help": "",
+      "link_name": "item-id-offset"
     },
     "$dé:enable_item_id_offset_editor": {
       "type": "boolean",
@@ -1123,12 +1376,13 @@
     "_section_progress": {
       "type": "section",
       "label": "Progress Screen",
-      "help": ""
+      "help": "",
+      "link_name": "progress"
     },
     "$dé:progress_background_alpha": {
       "type": "number",
       "input": "slider",
-      "min": 0.0,
+      "min": 0,
       "max": 3,
       "step": 0.01,
       "readonly": false,
@@ -1139,7 +1393,8 @@
     "_section_pause": {
       "type": "section",
       "label": "Pause Screen",
-      "help": ""
+      "help": "",
+      "link_name": "pause"
     },
     "$dé:show_trial_timer": {
       "type": "boolean",
@@ -1153,7 +1408,8 @@
     "_section_start": {
       "type": "section",
       "label": "Start Screen",
-      "help": ""
+      "help": "",
+      "link_name": "start-screen"
     },
     "$dé:show_ui_loaded_toast": {
       "type": "boolean",
@@ -1167,7 +1423,8 @@
     "_section_oreui": {
       "type": "section",
       "label": "OreUI",
-      "help": ""
+      "help": "",
+      "link_name": "oreui"
     },
     "$oreui_default_text_color": {
       "type": "number_array",
@@ -1175,7 +1432,11 @@
       "readonly": false,
       "label": "Default Text Colour of OreUI",
       "help": "",
-      "default": [0.117, 0.117, 0.121]
+      "default": [
+        0.117,
+        0.117,
+        0.121
+      ]
     },
     "$oreui_light_text_color": {
       "type": "number_array",
@@ -1183,7 +1444,11 @@
       "readonly": false,
       "label": "Light Text Colour of OreUI",
       "help": "",
-      "default": [1.0, 1.0, 1.0]
+      "default": [
+        1,
+        1,
+        1
+      ]
     },
     "$oreui_background_color": {
       "type": "number_array",
@@ -1191,7 +1456,11 @@
       "readonly": false,
       "label": "OreUI Background Colour",
       "help": "",
-      "default": [0.782, 0.782, 0.786]
+      "default": [
+        0.782,
+        0.782,
+        0.786
+      ]
     },
     "$déesse_oreui_light_button_default_text_color": {
       "type": "number_array",
@@ -1199,7 +1468,11 @@
       "readonly": false,
       "label": "Default Light Button Text Colour of OreUI",
       "help": "",
-      "default": [0.117, 0.117, 0.121]
+      "default": [
+        0.117,
+        0.117,
+        0.121
+      ]
     },
     "$déesse_oreui_light_button_hover_text_color": {
       "type": "number_array",
@@ -1207,7 +1480,11 @@
       "readonly": false,
       "label": "Light Button Hover Text Colour of OreUI",
       "help": "",
-      "default": [0.117, 0.117, 0.121]
+      "default": [
+        0.117,
+        0.117,
+        0.121
+      ]
     },
     "$déesse_oreui_light_button_pressed_text_color": {
       "type": "number_array",
@@ -1215,7 +1492,11 @@
       "readonly": false,
       "label": "Pressed Light Button Text Colour of OreUI",
       "help": "",
-      "default": [0.117, 0.117, 0.121]
+      "default": [
+        0.117,
+        0.117,
+        0.121
+      ]
     },
     "$déesse_oreui_light_button_locked_text_color": {
       "type": "number_array",
@@ -1223,7 +1504,11 @@
       "readonly": false,
       "label": "Locked Light Button Text Colour of OreUI",
       "help": "",
-      "default": [0.3, 0.3, 0.3]
+      "default": [
+        0.3,
+        0.3,
+        0.3
+      ]
     },
     "$déesse_oreui_red_button_default_text_color": {
       "type": "number_array",
@@ -1231,7 +1516,11 @@
       "readonly": false,
       "label": "Default Red Button Text Colour of OreUI",
       "help": "",
-      "default": [1.0, 1.0, 1.0]
+      "default": [
+        1,
+        1,
+        1
+      ]
     },
     "$déesse_oreui_red_button_hover_text_color": {
       "type": "number_array",
@@ -1239,7 +1528,11 @@
       "readonly": false,
       "label": "Red Button Hover Text Colour of OreUI",
       "help": "",
-      "default": [1.0, 1.0, 1.0]
+      "default": [
+        1,
+        1,
+        1
+      ]
     },
     "$déesse_oreui_red_button_pressed_text_color": {
       "type": "number_array",
@@ -1247,12 +1540,17 @@
       "readonly": false,
       "label": "Pressed Red Button Text Colour of OreUI",
       "help": "",
-      "default": [1.0, 1.0, 1.0]
+      "default": [
+        1,
+        1,
+        1
+      ]
     },
     "_section_compatibility": {
       "type": "section",
       "label": "Compatibility Stuff",
-      "help": ""
+      "help": "",
+      "link_name": "compatibility"
     },
     "$is_déesse_ui_pack": {
       "type": "boolean",
@@ -1302,7 +1600,8 @@
     "_section_debugging": {
       "type": "section",
       "label": "Debugging Stuff",
-      "help": ""
+      "help": "",
+      "link_name": "debugging"
     },
     "$deesse_ui_debug_mode": {
       "type": "boolean",
@@ -1324,7 +1623,8 @@
     "_section_vanilla_id_offset": {
       "type": "section",
       "label": "Vanilla Item ID Offset",
-      "help": "Item ID Offset when Minecraft added new items (unused)"
+      "help": "Item ID Offset when Minecraft added new items (unused)",
+      "link_name": "vanilla-id"
     },
     "$dé:vanilla_id_offset": {
       "type": "number",
@@ -1337,7 +1637,8 @@
     "_section_durability": {
       "type": "section",
       "label": "Durability code by @dimzcraft",
-      "help": "DM that person if you want to use these codes"
+      "help": "DM that person if you want to use these codes",
+      "link_name": "durability-code"
     },
     "$dé:durability_current_value": {
       "type": "string",
