@@ -460,6 +460,52 @@ small{color:var(--muted)}
   border-radius:0 10px 10px 0;
 }
 
+.section-title-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.section-link-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  width:1.625rem;
+  height:1.625rem;
+  padding:0;
+  background:transparent;
+  border:1.5px solid var(--accent);
+  border-radius:4px;
+  color:var(--muted);
+  cursor:pointer;
+  transition:color 0.15s, background 0.15s;
+}
+
+.section-link-btn svg{
+  width:0.8125rem;
+  height:0.8125rem;
+  opacity:0.5;
+  transition:opacity 0.15s;
+}
+
+.section-link-btn:hover{
+  color:var(--accent);
+  background:rgba(124,92,255,0.12);
+}
+
+.section-link-btn:hover svg{
+  opacity:1;
+}
+
+.section-link-btn.copied{
+  color:#00c853;
+}
+
+.section-link-btn.copied svg{
+  opacity:1;
+}
+
 .section-header h3{
   margin:0;
   font-size:1.3rem;
@@ -778,6 +824,13 @@ small{color:var(--muted)}
   background-color: #b3e0ff;
 }
 
+@keyframes scroll-top-bounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-9px); }
+  60%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
 /* Scroll to top button */
 #scrollToTop {
   position: fixed;
@@ -804,6 +857,11 @@ small{color:var(--muted)}
 #scrollToTop.visible {
   opacity: 1;
   visibility: visible;
+}
+
+#scrollToTop.bouncing {
+  animation: scroll-top-bounce 0.4s ease-in-out 2;
+  transition: opacity 0.3s;
 }
 
 #scrollToTop:hover {
