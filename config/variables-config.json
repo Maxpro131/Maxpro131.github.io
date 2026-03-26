@@ -1,5 +1,5 @@
 {
-  "packDownloadUrl": "https://edge.forgecdn.net/files/7767/199/D%c3%a9esse%20UI%20v1.3.2.mcpack?ft=376ad369da06900bbc7942c3a4414cf4&bd=8k3zn2jw24h",
+  "packDownloadUrl": "https://edge.forgecdn.net/files/7816/541/D%c3%a9esse%20UI%20v1.3.3.mcpack?ft=c0cc1fc36d84feaee91db07ede017169&bd=8k3zn2jw24h",
   "variables": {
     "_section_general": {
       "type": "section",
@@ -1287,7 +1287,7 @@
       "readonly": true,
       "label": "",
       "help": "",
-      "default": "v1.3.2 (127)",
+      "default": "v1.3.3 (139)",
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/obvious.png"
     },
     "$déesse_start_text": {
@@ -1296,7 +1296,7 @@
       "readonly": true,
       "label": "",
       "help": "",
-      "default": "Déesse UI v1.3.2",
+      "default": "Déesse UI v1.3.3",
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/obvious.png"
     },
     "_section_debugging": {
