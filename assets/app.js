@@ -419,12 +419,41 @@ function matchesSearch(key, desc, searchTerm){
   return keyMatch || labelMatch || helpMatch;
 }
 
-function makeSection(desc){
+function makeSection(desc, key){
   const section = document.createElement('div');
   section.className = 'section-header';
+
+  const titleRow = document.createElement('div');
+  titleRow.className = 'section-title-row';
+
+  const linkName = desc.link_name || key;
+
+  const linkBtn = document.createElement('button');
+  linkBtn.className = 'section-link-btn';
+  linkBtn.title = 'Copy link to this section';
+  linkBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`;
+
+  let linkCopyTimer = null;
+  linkBtn.addEventListener('click', () => {
+    const url = location.origin + location.pathname + '#' + encodeURIComponent(linkName);
+    navigator.clipboard.writeText(url).then(() => {
+      clearTimeout(linkCopyTimer);
+      linkBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+      linkBtn.classList.add('copied');
+      linkCopyTimer = setTimeout(() => {
+        linkBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`;
+        linkBtn.classList.remove('copied');
+      }, 1200);
+    });
+  });
+
   const title = document.createElement('h3');
   title.textContent = desc.label || 'Section';
-  section.appendChild(title);
+
+  titleRow.appendChild(linkBtn);
+  titleRow.appendChild(title);
+  section.appendChild(titleRow);
+
   if(desc.help){
     const helpText = document.createElement('p');
     helpText.className = 'section-help';
@@ -464,8 +493,9 @@ function renderControlsForVariables(){
     const desc = vars[k] || {};
     if(desc.type === 'section'){
       if(!currentSearchTerm){
-        const sectionId = `section-${k}`;
-        const sectionEl = makeSection(desc);
+        const linkName = desc.link_name || k;
+        const sectionId = `section-${linkName}`;
+        const sectionEl = makeSection(desc, k);
         sectionEl.id = sectionId;
         controlsEl.appendChild(sectionEl);
 
@@ -771,6 +801,47 @@ async function init(){
   }
 
   status.textContent = 'Ready.';
+
+  // Scroll to section if URL has a hash
+  scrollToHashSection();
+}
+
+function scrollToHashSection() {
+  const hash = decodeURIComponent(location.hash.replace(/^#/, ''));
+  if (!hash) return;
+  const target = document.getElementById('section-' + hash);
+  if (target) {
+    requestAnimationFrame(() => {
+      const topBarHeight = document.querySelector('.top-bar').offsetHeight;
+      const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - topBarHeight - 20;
+      window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+
+      // Wait for smooth scroll to finish, then bounce the scroll-to-top button
+      const btn = document.getElementById('scrollToTop');
+      if (btn) {
+        let scrollEndTimer;
+        const onScroll = () => {
+          clearTimeout(scrollEndTimer);
+          scrollEndTimer = setTimeout(() => {
+            window.removeEventListener('scroll', onScroll);
+            btn.classList.add('visible', 'bouncing');
+            btn.addEventListener('animationend', () => {
+              btn.classList.remove('bouncing');
+            }, { once: true });
+          }, 100);
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        // Fallback: if the page doesn't scroll (already at target), trigger after a short delay
+        scrollEndTimer = setTimeout(() => {
+          window.removeEventListener('scroll', onScroll);
+          btn.classList.add('visible', 'bouncing');
+          btn.addEventListener('animationend', () => {
+            btn.classList.remove('bouncing');
+          }, { once: true });
+        }, 800);
+      }
+    });
+  }
 }
 
 // Add JSZip via CDN for simplicity in static site
