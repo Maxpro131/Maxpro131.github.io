@@ -1,3 +1,7 @@
+// Prevent the browser (especially iOS Safari) from restoring scroll position
+// on reload, which would overwrite our hash-based programmatic scroll.
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
 const CONFIG_URL = new URL('config/variables-config.json', location.href).href;
 const EXAMPLE_URL = new URL('examples/_global_variables.example.json', location.href).href;
 
@@ -811,7 +815,9 @@ function scrollToHashSection() {
   if (!hash) return;
   const target = document.getElementById('section-' + hash);
   if (target) {
-    requestAnimationFrame(() => {
+    // Use setTimeout instead of rAF so we run after iOS Safari finishes
+    // its own page setup (scroll restoration, layout pass, etc.)
+    setTimeout(() => {
       const topBarHeight = document.querySelector('.top-bar').offsetHeight;
       const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - topBarHeight - 20;
       window.scrollTo({ top: targetPosition, behavior: 'smooth' });
@@ -840,7 +846,7 @@ function scrollToHashSection() {
           }, { once: true });
         }, 800);
       }
-    });
+    }, 50);
   }
 }
 
