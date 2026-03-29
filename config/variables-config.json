@@ -61,7 +61,7 @@
       "default": false,
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/9.jpg"
     },
-    "dé:use_one_line_tooltip_text": {
+    "$dé:use_one_line_tooltip_text": {
       "type": "boolean",
       "input": "toogle",
       "readonly": false,
@@ -69,7 +69,7 @@
       "help": "",
       "default": true
     },
-    "dé:show_open_menu_tips_chat": {
+    "$dé:show_open_menu_tips_chat": {
       "type": "boolean",
       "input": "toogle",
       "readonly": false,
@@ -1146,7 +1146,7 @@
       "help": "",
       "link_name": "container-screen"
     },
-    "dé:use_background_close": {
+    "$dé:use_background_close": {
       "type": "boolean",
       "input": "toogle",
       "readonly": false,
