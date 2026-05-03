@@ -1353,8 +1353,8 @@
     },
     "_section_tools": {
       "type": "section",
-      "label": "Toggle tools from Déesse Tools menu",
-      "help": "",
+      "label": "Tools",
+      "help": "Toggle tools from Déesse Tools menu",
       "link_name": "tools"
     },
     "$dé:tool_minimap_renderer": {
