@@ -52,15 +52,6 @@
       "default": true,
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/2.jpg"
     },
-    "$dé:enable_center_item_stack": {
-      "type": "boolean",
-      "input": "toggle",
-      "readonly": false,
-      "label": "Shows the item stack in the middle of the screen",
-      "help": "Also shows a new toggle in HUD menu",
-      "default": false,
-      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/9.jpg"
-    },
     "$dé:use_one_line_tooltip_text": {
       "type": "boolean",
       "input": "toogle",
@@ -222,12 +213,7 @@
       "readonly": false,
       "label": "Night vision overlay color",
       "help": "Red, Green, Blue, Alpha",
-      "default": [
-        1,
-        1,
-        0.9881,
-        1
-      ]
+      "default": [1, 1, 0.9881, 0.4]
     },
     "$dé:always_use_outside_button": {
       "type": "boolean",
@@ -361,13 +347,13 @@
       "help": "If the coordinates should be hidden by default",
       "default": false
     },
-    "$dé:hud_menu-center_item_stack": {
+    "$dé:hud_menu_item_information": {
       "type": "boolean",
       "input": "toggle",
       "readonly": false,
-      "label": "Center Item Stack",
-      "help": "If Center Item Stack should be enabled by default. Enable the feature in General first",
-      "default": false
+      "label": "HUD Menu Item Information",
+      "help": "",
+      "default": true
     },
     "$dé:hud_menu-player_list": {
       "type": "boolean",
@@ -377,14 +363,6 @@
       "help": "Toggle this off to disable the player list feature",
       "default": true,
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/10.jpg"
-    },
-    "dé:hud_menu_item_information": {
-      "type": "boolean",
-      "input": "toogle",
-      "readonly": false,
-      "label": "",
-      "help": "",
-      "default": true
     },
     "_section_f3": {
       "type": "section",
@@ -1113,6 +1091,15 @@
       "help": "",
       "link_name": "deesse-chat"
     },
+    "$dé:show_preview_chat": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Shows a preview of the message you're about to send above the text box",
+      "help": "Useful for testing § formatting before sending",
+      "default": false,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/14.png"
+    },
     "$dé:show_background_chat": {
       "type": "boolean",
       "input": "toggle",
@@ -1130,15 +1117,6 @@
       "help": "Makes messages not vanish from text box after sending them",
       "default": false,
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/12.gif"
-    },
-    "$dé:show_preview_chat": {
-      "type": "boolean",
-      "input": "toggle",
-      "readonly": false,
-      "label": "Shows a preview of the message you're about to send above the text box",
-      "help": "Useful for testing § formatting before sending",
-      "default": false,
-      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/14.png"
     },
     "_section_container_screen": {
       "type": "section",
@@ -1220,6 +1198,21 @@
       "help": "",
       "default": 0.45
     },
+    "_section_trade": {
+      "type": "section",
+      "label": "Trade Screen",
+      "help": "",
+      "link_name": "trade"
+    },
+    "$dé:enable_trade_unlocker": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Shows you what items you get before unlocking them",
+      "help": "",
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/15.gif"
+    },
     "_section_qc": {
       "type": "section",
       "label": "Quick Container",
@@ -1269,6 +1262,14 @@
       "help": "",
       "default": 4
     },
+    "$dé_QC:bulk_disenchant": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": true
+    },
     "_section_settings_screen": {
       "type": "section",
       "label": "Settings Screen",
@@ -1284,6 +1285,190 @@
       "default": true,
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/14.gif"
     },
+    "_section_progress": {
+      "type": "section",
+      "label": "Progress Screen",
+      "help": "",
+      "link_name": "progress"
+    },
+    "$dé:progress_background_alpha": {
+      "type": "number",
+      "input": "slider",
+      "min": 0,
+      "max": 3,
+      "step": 0.01,
+      "readonly": false,
+      "label": "Progress Background Transparency",
+      "help": "",
+      "default": 0.45
+    },
+    "$dé:chunk_loading_position": {
+      "type": "number",
+      "input": "slider",
+      "min": 0,
+      "max": 1,
+      "step": 1,
+      "readonly": false,
+      "label": "Chunk Loading Position",
+      "help": "0 = Bottom Left; 1 = Center",
+      "default": 0
+    },
+    "_section_pause": {
+      "type": "section",
+      "label": "Pause Screen",
+      "help": "",
+      "link_name": "pause"
+    },
+    "$dé:show_trial_timer": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show Trial Timer in Pause Screen",
+      "help": "",
+      "default": false,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/17.png"
+    },
+    "$dé:show_game_paused_text": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show game paused text in hide screen mode",
+      "help": "",
+      "default": true
+    },
+    "_section_start": {
+      "type": "section",
+      "label": "Start Screen",
+      "help": "",
+      "link_name": "start-screen"
+    },
+    "$dé:show_ui_loaded_toast": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Show \"Déesse UI has been loaded!\" Toast",
+      "help": "",
+      "default": true,
+      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/18.png"
+    },
+    "_section_tools": {
+      "type": "section",
+      "label": "Toggle tools from Déesse Tools menu",
+      "help": "",
+      "link_name": "tools"
+    },
+    "$dé:tool_minimap_renderer": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Minimap",
+      "help": "",
+      "default": true
+    },
+    "$dé:tool_smithing_armor_preview": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Smithing Armor Preview",
+      "help": "",
+      "default": true
+    },
+    "$dé:tool_banner_pattern_editor": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Banner Patter Editor",
+      "help": "",
+      "default": true
+    },
+    "$dé:tool_item_renderer": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Item Renderer",
+      "help": "",
+      "default": true
+    },
+    "$dé:tool_entity_renderer": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Entity Renderer",
+      "help": "",
+      "default": true
+    },
+    "$dé:tool_chunk_map": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Chunk Map",
+      "help": "",
+      "default": true
+    },
+    "$dé:tool_texture_renderer": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Texture Renderer",
+      "help": "",
+      "default": true
+    },
+    "$dé:tool_qr_code_generator": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "QR Code Generator",
+      "help": "",
+      "default": true
+    },
+    "$dé:tool_easing_animation": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Easing Animation",
+      "help": "",
+      "default": true
+    },
+    "$dé:tool_color_viewer": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Colour Viewer",
+      "help": "",
+      "default": true
+    },
+    "$dé:tool_ui_screens": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": true
+    },
+    "$dé:tool_notes": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": false
+    },
+    "$dé:other_note_block": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "",
+      "help": "",
+      "default": true
+    },
+    "$dé:other_mystery": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Mystery",
+      "help": "",
+      "default": true
+    },
     "_section_minimap": {
       "type": "section",
       "label": "Minimap Renderer",
@@ -1298,17 +1483,29 @@
       "help": "",
       "default": true
     },
+    "$dé:include_players": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Include Players in Minimap Renderer",
+      "help": "",
+      "default": true
+    },
+    "$dé:remove_blocks": {
+      "type": "boolean",
+      "input": "toggle",
+      "readonly": false,
+      "label": "Remove Blocks from Minimap Renderer",
+      "help": "",
+      "default": false
+    },
     "$dé:bottom_left_corner": {
       "type": "number_array",
       "count": 3,
       "readonly": false,
       "label": "Rendered Area",
       "help": "Bottom Left Corner",
-      "default": [
-        -128,
-        -60,
-        -128
-      ]
+      "default": [-128, -64, -128]
     },
     "$dé:top_right_corner": {
       "type": "number_array",
@@ -1336,21 +1533,6 @@
       "help": "",
       "default": false
     },
-    "_section_trade": {
-      "type": "section",
-      "label": "Trade Screen",
-      "help": "",
-      "link_name": "trade"
-    },
-    "$dé:enable_trade_unlocker": {
-      "type": "boolean",
-      "input": "toggle",
-      "readonly": false,
-      "label": "Shows you what items you get before unlocking them",
-      "help": "",
-      "default": true,
-      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/15.gif"
-    },
     "_section_item_id_offset": {
       "type": "section",
       "label": "Item ID Offset",
@@ -1372,53 +1554,6 @@
       "label": "Enter the total of new items from the addons you installed",
       "help": "",
       "default": 0
-    },
-    "_section_progress": {
-      "type": "section",
-      "label": "Progress Screen",
-      "help": "",
-      "link_name": "progress"
-    },
-    "$dé:progress_background_alpha": {
-      "type": "number",
-      "input": "slider",
-      "min": 0,
-      "max": 3,
-      "step": 0.01,
-      "readonly": false,
-      "label": "Progress Background Transparency",
-      "help": "",
-      "default": 0.45
-    },
-    "_section_pause": {
-      "type": "section",
-      "label": "Pause Screen",
-      "help": "",
-      "link_name": "pause"
-    },
-    "$dé:show_trial_timer": {
-      "type": "boolean",
-      "input": "toggle",
-      "readonly": false,
-      "label": "Show Trial Timer in Pause Screen",
-      "help": "",
-      "default": false,
-      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/17.png"
-    },
-    "_section_start": {
-      "type": "section",
-      "label": "Start Screen",
-      "help": "",
-      "link_name": "start-screen"
-    },
-    "$dé:show_ui_loaded_toast": {
-      "type": "boolean",
-      "input": "toggle",
-      "readonly": false,
-      "label": "Show \"Déesse UI has been loaded!\" Toast",
-      "help": "",
-      "default": true,
-      "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/18.png"
     },
     "_section_oreui": {
       "type": "section",
@@ -1585,7 +1720,7 @@
       "readonly": true,
       "label": "",
       "help": "",
-      "default": "v1.3.4 (144)",
+      "default": "v1.3.5 (157)",
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/obvious.png"
     },
     "$déesse_start_text": {
@@ -1594,7 +1729,7 @@
       "readonly": true,
       "label": "",
       "help": "",
-      "default": "Déesse UI v1.3.4",
+      "default": "Déesse UI v1.3.5",
       "previewURL": "https://raw.githubusercontent.com/Maxpro131/Maxpro131.github.io/refs/heads/main/Resources/obvious.png"
     },
     "_section_debugging": {
@@ -1619,20 +1754,6 @@
       "label": "Force Déesse HUD on Desktop",
       "help": "for debugging purposes",
       "default": false
-    },
-    "_section_vanilla_id_offset": {
-      "type": "section",
-      "label": "Vanilla Item ID Offset",
-      "help": "Item ID Offset when Minecraft added new items (unused)",
-      "link_name": "vanilla-id"
-    },
-    "$dé:vanilla_id_offset": {
-      "type": "number",
-      "input": "text",
-      "readonly": false,
-      "label": "",
-      "help": "",
-      "default": 0
     },
     "_section_durability": {
       "type": "section",
