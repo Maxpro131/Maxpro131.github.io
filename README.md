@@ -1,6 +1,6 @@
 # Déesse UI — Global Variables Editor
 https://maxpro131.github.io/ <br>
-Use toogles, sliders, choices and string input to customize your Déesse UI config file <br>
+Use toggles, sliders, choices and string input to customize your Déesse UI config file <br>
 > UI and logic vibecoded using GitHub Copilot (GPT-5 mini) and Replit Agent
 
 ## Features
