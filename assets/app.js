@@ -994,7 +994,7 @@ autoPackBtn.addEventListener('click', async () => {
     if (!packUrl) throw new Error('No pack download URL configured.');
 
     const proxies = [
-      url => 'https://corsproxy.io/?url=' + encodeURIComponent(url),
+      url => 'https://cloudflare-cors-anywhere.maxb166.workers.dev/?' + url,
       url => 'https://cors.eu.org/' + url,
       url => 'https://thingproxy.freeboard.io/fetch/' + url,
     ];
